@@ -4,6 +4,6 @@ class Message < ActiveRecord::Base
   belongs_to :stream
   
   validates_presence_of :user
-  validates_presence_of :message
+  validates :message, presence: true, length: { maximum: 120 }
 
 end
