@@ -14,12 +14,6 @@
   </div>
   <div class="col-xs-12 cold-md-12 col-lg-4">
     <div id="chat" class="chat">
-      <% @stream.messages.each do |m| %>
-        <div class="message">
-          <span class="name"><%= m.user.username %></span>
-          <span class="body"><%= m.message %></span>
-        </div>
-      <% end %>
     </div>
     <% if user_signed_in? %>
       <div class="chat_input">
@@ -35,12 +29,12 @@
     <% end %>
   </div>
 </div>
-<%= subscribe_to "/channel/#{@stream.id}" %>
+
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     jwplayer("stream").setup({
         flashplayer: '../jwplayer.flash.swf',
-        file: "rtmp://live.watchme.io/stream/flv:phelps",
+        file: "rtmp://live.watchme.io/stream/flv:<%= current_user.username %>",
         width: '100%',
         rtmp: {
             bufferlength: 0.1
@@ -62,17 +56,15 @@
             scrollTop: $("#chat")[0].scrollHeight
           }, 100);
       });
-    }, 200);
+    }, 300);    
     setTimeout(function(){
       PrivatePub.subscribe("/channel/<%= @stream.id %>", function(data, channel) {
-        console.log(data);
         $("#chat").append('<div class="message"><span class="name">' + data.username + '</span><span class="body">' + data.message + '</span></div>');
         $('#chat').stop().animate({
           scrollTop: $("#chat")[0].scrollHeight
         }, 500);
       });
     }, 1000);
-    console.log('init')
   });
   $('form#new_message').submit(function() {
     if ($('#message_message').val() != "") {
