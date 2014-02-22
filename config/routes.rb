@@ -6,6 +6,7 @@ WatchMe::Application.routes.draw do
   devise_for :users
   
   get '/publish' => 'publish#publish'
+  get '/:id' => 'streams#show'
   
   root 'home#index'
 
