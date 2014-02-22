@@ -1,7 +1,7 @@
 ---
 port: 4443
 ssl: true
-ssl_key_file: /home/watchme/certs/ssl-bundle.crt
+ssl_key_file: /home/watchme/certs/myserver.key
 ssl_cert_file: /home/watchme/certs/ssl-bundle.crt
 environment: production
 rackup: private_pub.ru
