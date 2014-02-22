@@ -1,0 +1,24 @@
+// Place all the styles related to the Streams controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.chat {
+  border: 1px #afafaf solid;
+  margin-bottom: 5px;
+  height: 382px;
+  overflow-y: scroll;
+  .message {
+    padding: 3px;
+    .name {
+      font-weight: bold;
+    }
+    .name:after {
+      content: ':';
+    }
+    .body {
+      margin-left: 5px;
+    }
+  }
+}
+.chat_input {
+  
+}
