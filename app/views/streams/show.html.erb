@@ -35,6 +35,7 @@
     jwplayer("stream").setup({
         flashplayer: '../jwplayer.flash.swf',
         file: "rtmp://live.watchme.io/stream/flv:<%= @stream.user.username %>",
+        image: "http://live.watchme.io/thumb/<%= @stream.user.username %>",
         width: '100%',
         rtmp: {
             bufferlength: 0.1
