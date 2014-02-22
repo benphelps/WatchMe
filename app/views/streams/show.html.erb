@@ -29,7 +29,7 @@
     <% end %>
   </div>
 </div>
-
+<%= subscribe_to "/channel/#{@stream.id}" %>
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     jwplayer("stream").setup({
