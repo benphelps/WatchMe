@@ -34,7 +34,7 @@
   $(document).ready(function(){
     jwplayer("stream").setup({
         flashplayer: '../jwplayer.flash.swf',
-        file: "rtmp://live.watchme.io/stream/flv:<%= current_user.username %>",
+        file: "rtmp://live.watchme.io/stream/flv:<%= @stream.user.username %>",
         width: '100%',
         rtmp: {
             bufferlength: 0.1
