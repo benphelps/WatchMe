@@ -5,6 +5,6 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "http://ws.watchme.io/faye"
+  server: "https://watchme.io/socket.io/faye"
   secret_token: "secret"
   signature_expiration: 3600
