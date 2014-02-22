@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+.fixed {
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
+}
