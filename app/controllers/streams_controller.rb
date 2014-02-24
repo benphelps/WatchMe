@@ -1,7 +1,7 @@
 require 'securerandom'
 class StreamsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :info]
 
   def index
     @streams = Stream.all
@@ -11,11 +11,16 @@ class StreamsController < ApplicationController
     if current_user.stream
       redirect_to current_user.stream
     end
-    @stream = Stream.new
+    @stream = Stream.new(user: current_user, body: 'You can edit this later.')
   end
   
   def create
-    @stream = Stream.new(stream_params)
+    @stream = Stream.new(
+      user: current_user,
+      name: stream_params[:name],
+      description: stream_params[:description],
+      body: stream_params[:body]
+    )
     @stream.public_key = SecureRandom.hex(6)
     @stream.private_key = SecureRandom.hex(12)
     @stream.user_id = current_user.id
@@ -38,6 +43,10 @@ class StreamsController < ApplicationController
       render action: 'edit'
     end
   end
+  
+  def info
+    @stream = current_user.stream
+  end
 
   def show
     @stream = Stream.friendly.find(params[:id])
@@ -46,7 +55,7 @@ class StreamsController < ApplicationController
   private
   
   def stream_params
-    params.require(:stream).permit(:name, :description)
+    params.require(:stream).permit(:name, :description, :body, :bootsy_image_gallery_id)
   end
 
 end

@@ -34,6 +34,8 @@ gem 'private_pub'
 gem 'thin'
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'rails_config'
+gem 'bootsy'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

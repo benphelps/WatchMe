@@ -5,41 +5,55 @@
   </div>
 </div> 
 <div class="row">
-  <div class="col-xs-12 cold-md-12 col-lg-8">
+  <div class="col-xs-12 cold-md-12 col-lg-12">
     <div id="stream_container">
-        <div id="stream">
+        <div id="stream" style="min-height: 641px;">
             Loading Stream
         </div>
     </div>
   </div>
-  <div class="col-xs-12 cold-md-12 col-lg-4">
-    <div id="chat" class="chat">
+  <div class="col-xs-12 cold-md-12 col-lg-6">
+    <div class="well">
+      <%= @stream.body.html_safe %>
     </div>
-    <% if user_signed_in? %>
-      <div class="chat_input">
-        <%= form_for @stream.messages.new do |f| %>
-          <%= f.hidden_field :stream_id %>
-          <%= f.text_field :message, class: 'form-control' %>
+  </div>
+  <div class="col-xs-12 cold-md-12 col-lg-6">
+    <div class="well">
+      <div id="chat" class="chat">
+        <% @stream.messages.limit(15).order(created_at: :desc).each do |message| %>
+        <div class="message">
+          <span class="name"><%= message.user.username %></span>
+          <span class="body"><%= message.message %></span>
+        </div>
         <% end %>
       </div>
-    <% else %>
-      <div class="chat_input">
-        Login or register to chat.
-      </div>
-    <% end %>
+      <% if user_signed_in? %>
+        <div class="chat_input">
+          <%= form_for @stream.messages.new do |f| %>
+            <%= f.hidden_field :stream_id %>
+            <%= f.text_field :message, class: 'form-control' %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="chat_input">
+          Login or register to chat.
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <%= subscribe_to "/channel/#{@stream.id}" %>
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     jwplayer("stream").setup({
-        flashplayer: '../jwplayer.flash.swf',
-        file: "rtmp://live.watchme.io/stream/flv:<%= @stream.user.username %>",
-        image: "https://watchme.io/thumb/<%= @stream.user.username %>.png",
+        flashplayer: '/assets/jwplayer.flash.swf',
+        image: "/thumb/<%= @stream.user.username %>.png",
+        file: "rtmp://<%= Settings.rtmp.server %>/<%= Settings.rtmp.app %>/flv:<%= @stream.user.username %>",
         width: '100%',
+        height: '100%',
         rtmp: {
             bufferlength: 0.1
-        },
+        }
     });
     setTimeout(function(){
       $(function() {
@@ -58,6 +72,7 @@
           }, 100);
       });
     }, 300);    
+    $(window).resize();
     setTimeout(function(){
       PrivatePub.subscribe("/channel/<%= @stream.id %>", function(data, channel) {
         $("#chat").append('<div class="message"><span class="name">' + data.username + '</span><span class="body">' + data.message + '</span></div>');

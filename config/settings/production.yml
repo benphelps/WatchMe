@@ -1,0 +1,3 @@
+rtmp:
+  server: 'live.watchme.io'
+  app: 'stream'

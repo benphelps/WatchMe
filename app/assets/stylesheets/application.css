@@ -9,9 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootsy
  *= require_tree .
  */
 
 .fixed {
   font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
+}
+form .clearfix:before, form .clearfix:after {
+  display: inline;
 }

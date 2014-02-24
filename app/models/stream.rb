@@ -1,5 +1,10 @@
 class Stream < ActiveRecord::Base
+
   extend FriendlyId
+  include Bootsy::Container
+  
+  validates_presence_of :name
+  validates_presence_of :description
   
   belongs_to :user
   has_many :messages

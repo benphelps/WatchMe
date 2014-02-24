@@ -1,0 +1,16 @@
+.row.fixed
+  .col-xs-12.col-md-12.col-lg-6
+    .server
+      %strong RTMP Server:
+      = Settings.rtmp.server
+    .server
+      %strong RTMP Application:
+      = Settings.rtmp.app
+    .private_key
+      %strong Auth Key:
+      = @stream.private_key
+
+.row.fixed
+  .col-xs-12.col-md-12.col-lg-6
+    .example
+      = 'rtmp://' + Settings.rtmp.server + '/' + Settings.rtmp.app + '/' + current_user.username + '?key=' + @stream.private_key

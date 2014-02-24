@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">watchme.<span class="fixed">I/O</span></a>
+          <%= link_to 'watchme.I/O', root_path, class: 'navbar-brand fixed' %>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -41,6 +41,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %><b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <% if current_user.stream %>
+                    <li><%= link_to 'Publisher API', publish_path %></li>
                     <li><%= link_to 'Edit Strean', edit_stream_path(current_user.stream) %></li>
                   <% else %>
                     <li><%= link_to 'Setup Stream', new_stream_path %></li>
@@ -59,6 +60,11 @@
       </div>
     </div>
     <div class="container">
+      <% flash.each do |key, value| %>
+            <div class="<%= flash_class(key) %>">
+              <%= value %>
+            </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>
