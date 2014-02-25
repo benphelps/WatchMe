@@ -1,4 +1,4 @@
-= form_for @stream do |f|
+= form_for @stream , :html => {:multipart => true} do |f|
   - if @stream.errors.any?
     - @stream.errors.full_messages.each do |msg|
       .alert.alert-danger= msg
@@ -16,6 +16,18 @@
       .form-group
         = f.label :body
         = f.bootsy_area :body, class: 'form-control', rows: '15'
+  %hr
+  .row
+    .col-xs-12.col-md-6.col-lg-6
+      %div= f.label :placeholder
+      %span.btn.btn-default.btn-file
+        Upload Placeholder
+        = f.file_field :placeholder
+      .small
+        Upload a placeholder image that will be displayed when you are not streaming.
+    .col-xs-hidden.col-md-6.col-lg-6
+      = image_tag @stream.placeholder_url(:thumb)
+  %hr
   .row
     .col-xs-12.col-md-6.col-lg-3
       = f.submit 'Save Changes', class: 'btn btn-primary'

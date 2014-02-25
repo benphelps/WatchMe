@@ -1,0 +1,7 @@
+<% @streams.each do |stream| %>
+<div class="col-md-4 stream-block">
+  <%= link_to image_tag(stream.placeholder_url, class: 'img-responsive'), stream %>
+  <h3><%= link_to stream.name, stream %></h3>
+  <p><%= stream.description %></p>
+</div>
+<% end %>

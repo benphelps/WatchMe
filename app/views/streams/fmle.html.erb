@@ -1,0 +1,19 @@
+<flashmedialiveencoder_profile>
+  <preset>
+    <name>watchme.IO</name>
+    <description>watchme.IO - <%= current_user.username %></description>
+  </preset>
+  <encode>
+    <video>
+      <format>H.264</format>
+      <datarate>1200</datarate>
+      <outputsize>1280x720</outputsize>
+    </video>
+  </encode>
+  <output>
+    <rtmp>
+      <url><%= 'rtmp://' + Settings.rtmp.server + '/' + Settings.rtmp.app %></url>
+      <stream><%= current_user.username + '?key=' + @stream.private_key %></stream>
+    </rtmp>
+  </output>
+</flashmedialiveencoder_profile>

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <title>watchme.IO</title>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application", media: "all" %>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
     <!-- Fixed navbar -->
@@ -48,7 +48,7 @@
                   <% end %>
                   <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
                   <li class="divider"></li>
-                  <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+                  <li><%= link_to 'Logout', logout_path %></li>
                 </ul>
               </li>
             <% else %>

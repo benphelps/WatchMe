@@ -1,7 +1,7 @@
 require 'securerandom'
 class StreamsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :info]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :info, :fmle]
 
   def index
     @streams = Stream.all
@@ -47,6 +47,12 @@ class StreamsController < ApplicationController
   def info
     @stream = current_user.stream
   end
+  
+  def fmle
+    @stream = current_user.stream
+    response.headers['Content-Disposition'] = "attachment; filename=watchmeio-#{current_user.username}-fmle.xml"
+    render :layout => false
+  end
 
   def show
     @stream = Stream.friendly.find(params[:id])
@@ -55,7 +61,7 @@ class StreamsController < ApplicationController
   private
   
   def stream_params
-    params.require(:stream).permit(:name, :description, :body, :bootsy_image_gallery_id)
+    params.require(:stream).permit(:name, :description, :body, :bootsy_image_gallery_id, :placeholder)
   end
 
 end

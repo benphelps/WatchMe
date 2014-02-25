@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223233733) do
+ActiveRecord::Schema.define(version: 20140225122444) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140223233733) do
     t.datetime "updated_at"
     t.string   "slug"
     t.text     "body"
+    t.string   "placeholder"
   end
 
   create_table "users", force: true do |t|

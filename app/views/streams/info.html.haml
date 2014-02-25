@@ -14,3 +14,6 @@
   .col-xs-12.col-md-12.col-lg-6
     .example
       = 'rtmp://' + Settings.rtmp.server + '/' + Settings.rtmp.app + '/' + current_user.username + '?key=' + @stream.private_key
+      
+.row
+  = link_to 'fmle', fmle_path
