@@ -1,6 +1,6 @@
 class NotifyController < ApplicationController
 
-  
+  protect_from_forgery except: :handle
 
   def handle
     if params[:key] == Settings.notify_key
