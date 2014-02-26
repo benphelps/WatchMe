@@ -11,6 +11,7 @@ WatchMe::Application.routes.draw do
     get '/logout' => 'devise/sessions#destroy'
   end
   
+  post '/notify' => 'notify#handle'
   get '/notify' => 'notify#handle'
   get '/publish' => 'streams#info', as: 'publish'
   get '/publish/fmle.xml' => 'streams#fmle', as: 'fmle'
