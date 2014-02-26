@@ -63,7 +63,7 @@
   $(document).ready(function(){
     jwplayer("stream").setup({
         flashplayer: '/jwplayer.flash.swf',
-        image: "<%= @stream.live ? '/preview/' + @stream.user.username : @stream.placeholder_url  %>",
+        image: "<%= @stream.live ? '/preview/' + @stream.user.username + '.png' : @stream.placeholder_url  %>",
         file: "rtmp://<%= Settings.rtmp.server %>/<%= Settings.rtmp.app %>/flv:<%= @stream.user.username %>",
         width: '100%',
         height: '65%',
