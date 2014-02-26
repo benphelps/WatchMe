@@ -5,13 +5,27 @@
   </div>
 </div> 
 <div class="row">
-  <div class="col-xs-12 cold-md-12 col-lg-12">
+  <div class="col-xs-12 col-md-12 col-lg-12">
     <div id="stream_container">
         <div id="stream" style="min-height: 641px;">
             Loading Stream
         </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12 col-lg-12">
+    <div>
+      <strong>Viewers:</strong> <%= @stream.live ? @stream.viewers : 'Offline' %>
+    </div>
+    <div>
+      <strong>Views:</strong> n/a
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-xs-12 cold-md-12 col-lg-6">
     <div class="well">
       <%= @stream.body.html_safe %>
