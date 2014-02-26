@@ -1,3 +1,4 @@
 rtmp:
   server: 'live.watchme.io'
   app: 'stream'
+notify_key: 'development'

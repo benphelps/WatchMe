@@ -13,5 +13,27 @@ class Stream < ActiveRecord::Base
   delegate :username, to: :user
     
   friendly_id :username, use: :slugged
+  
+  def add_viewer
+    self.viewers = self.viewers + 1
+    self.save
+  end
+
+  def remove_viewer
+    if self.viewers >= 1
+      self.viewers = self.viewers - 1
+      self.save
+    end
+  end
+  
+  def go_live
+    self.live = true
+    self.save
+  end
+  
+  def go_dark
+    self.live = false
+    self.save
+  end
 
 end
