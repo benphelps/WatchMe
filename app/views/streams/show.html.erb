@@ -16,11 +16,13 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-12 col-lg-12">
-    <div>
-      <strong>Viewers:</strong> <%= @stream.live ? @stream.viewers : 'Offline' %>
-    </div>
-    <div>
-      <strong>Views:</strong> n/a
+    <div class="well">
+      <div>
+        <strong>Viewers:</strong> <%= @stream.live ? @stream.viewers : 'Offline' %>
+      </div>
+      <div>
+        <strong>Views:</strong> n/a
+      </div>
     </div>
   </div>
 </div>
@@ -61,11 +63,8 @@
   $(document).ready(function(){
     jwplayer("stream").setup({
         flashplayer: '/jwplayer.flash.swf',
-        sources: [{
-          file: "rtmp://<%= Settings.rtmp.server %>/<%= Settings.rtmp.app %>/flv:<%= @stream.user.username %>",
-        },{
-          file: "png:<%= @stream.placeholder_url %>"
-        }],
+        image: "<%= @stream.live ? '/preview/' + @stream.user.username : @stream.placeholder_url  %>",
+        file: "rtmp://<%= Settings.rtmp.server %>/<%= Settings.rtmp.app %>/flv:<%= @stream.user.username %>",
         width: '100%',
         height: '65%',
         rtmp: {

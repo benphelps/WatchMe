@@ -12,8 +12,8 @@
 
 .row.fixed
   .col-xs-12.col-md-12.col-lg-6
-    .example
-      = 'rtmp://' + Settings.rtmp.server + '/' + Settings.rtmp.app + '/' + current_user.username + '?key=' + @stream.private_key
-      
+    .small= 'rtmp://' + Settings.rtmp.server + '/' + Settings.rtmp.app + '/' + current_user.username + '?key=' + @stream.private_key
+
 .row
-  = link_to 'fmle', fmle_path
+  .col-xs-12.col-md-12.col-lg-6
+    = link_to 'Download Flash Media Live Encoder XML', fmle_path, class: 'btn btn-primary'
