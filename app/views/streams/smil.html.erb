@@ -1,0 +1,11 @@
+<smil>
+  <head>
+    <meta base="rtmp://live.watchme.io/"/>
+  </head>
+  <body>
+    <switch>
+      <video src="stream/flv:<%=@stream.user.username%>" system-bitrate="1126400" width="1280" height="720" />
+      <video src="small/flv:<%=@stream.user.username%>" system-bitrate="563200" width="640" height="360" />
+    </switch>
+    </body> 
+</smil>

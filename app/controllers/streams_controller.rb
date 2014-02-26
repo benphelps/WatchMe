@@ -53,6 +53,11 @@ class StreamsController < ApplicationController
     response.headers['Content-Disposition'] = "attachment; filename=watchmeio-#{current_user.username}-fmle.xml"
     render :layout => false
   end
+  
+  def smil
+    @stream = Stream.friendly.find(params[:id])
+    render :layout => false
+  end
 
   def show
     @stream = Stream.friendly.find(params[:id])

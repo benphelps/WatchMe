@@ -15,6 +15,7 @@ WatchMe::Application.routes.draw do
   get '/publish/fmle.xml' => 'streams#fmle', as: 'fmle'
   get '/pubauth' => 'publish#publish'
   get '/:id' => 'streams#show'
+  get '/streams/:id/source.smil' => 'streams#smil', as: 'smil'
   
   root 'home#index'
 

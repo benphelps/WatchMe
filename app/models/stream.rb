@@ -13,9 +13,5 @@ class Stream < ActiveRecord::Base
   delegate :username, to: :user
     
   friendly_id :username, use: :slugged
-  
-  def online?
-    #xml = Nokogiri::XML(open('http://live.watchme.io/stat.xml'))
-  end
 
 end

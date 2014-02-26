@@ -39,6 +39,7 @@ gem 'bootsy'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'nokogiri'
+gem 'multi_xml'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
