@@ -2,7 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #stream {
-  background-color: #000;
+  background-color: #2C3E50;
+  width: 750px;
+  height: 422px;
+  text-align: center;
+  line-height: 422px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 32px;
 }
 .chat {
   border: 1px #afafaf solid;

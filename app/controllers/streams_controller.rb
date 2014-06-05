@@ -7,6 +7,14 @@ class StreamsController < ApplicationController
     @streams = Stream.all
   end
   
+  def dash
+    @stream = Stream.friendly.find(params[:id])
+  end
+  
+  def hls
+    @stream = Stream.friendly.find(params[:id])
+  end
+  
   def new
     if current_user.stream
       redirect_to current_user.stream

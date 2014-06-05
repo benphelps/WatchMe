@@ -47,3 +47,6 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
+.navbar {
+  border-radius: 0px !important;
+}

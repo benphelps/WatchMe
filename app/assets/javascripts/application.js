@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require private_pub
 //= require streams
+//= require dash.min
