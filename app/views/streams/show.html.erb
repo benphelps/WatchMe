@@ -73,26 +73,24 @@
   $(document).ready(function(){
 
     var parameters = {
-      <% if params[:hls] %>
-        src: "http://<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8",
-      <% else %>
-        src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
-      <% end %>
-      // Player Options
       poster: "<%= (@stream.live ? '/preview/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
-      autoPlay: <%= (@stream.live ? 'true' : 'false') %>,
-      controlBarAutoHide: true,
-      controlBarAutoHideTimeout: 1,
-      controlBarMode: "floating",
-      playButtonOverlay: false,
-      optimizeBuffering : false,
-      optimizeInitialIndex: false,
-      streamType: "live",
+    <% if params[:hls] %>
       // HLS Streaming
       plugin_hls: "/HLSProvider.swf",
       hls_minbufferlength: -1,
       hls_lowbufferlength: 5,
       hls_maxbufferlength: 30
+      src: "http://<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8",
+    <% else %>
+      src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
+    <% end %>
+      autoPlay: <%= (@stream.live ? 'true' : 'false') %>,
+      controlBarAutoHide: true,
+      controlBarAutoHideTimeout: 1,
+      playButtonOverlay: false,
+      optimizeBuffering : false,
+      optimizeInitialIndex: false,
+      streamType: "live",
     };
     swfobject.embedSWF(
       "/StrobeMediaPlayback.swf",
@@ -105,21 +103,7 @@
       { allowFullScreen: "true", allowScriptAccess: 'always', wmode: 'opaque' },
       { name: "player" }
     );
-    // fit the player
-    $(window).resize(function() {
-      var width = $("#stream_container").width();
-      $("#stream").css({
-          "width": width,
-          "height": width*(9/16)
-      });
-      $("#stream_wrapper").css({
-          "height": 'auto'
-      });
-    }).resize();
-    setTimeout(function(){
-      $(window).resize();
-    }, 250);
-    
+
     // scroll chat
     $('#chat').stop().animate({
       scrollTop: $("#chat")[0].scrollHeight
@@ -149,11 +133,7 @@
       }
       return false;
     });
-    
-    $.getJSON( "", function( json ) {
-     console.log( "JSON Data: " + json.users[ 3 ].name );
-    });
-    
+
   });
   
 </script>
