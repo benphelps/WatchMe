@@ -23,3 +23,5 @@
 /encoding/
 
 *.log
+
+/nginx.conf

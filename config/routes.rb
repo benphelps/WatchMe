@@ -18,6 +18,9 @@ WatchMe::Application.routes.draw do
   get '/publish/fmle.xml' => 'streams#fmle', as: 'fmle'
   
   get '/:id' => 'streams#show'
+  get '/:id/popout' => 'streams#popout', as: 'stream_popout'
+  get '/streams/:id/popout' => 'streams#popout'
+  
   get '/vod/:name' => 'vods#index', as: 'vod'
   get '/vod/:name/:id' => 'vods#show', as: 'vod_show'
   

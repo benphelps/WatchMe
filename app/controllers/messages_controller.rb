@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
     if @message.save
       PrivatePub.publish_to "/channel/#{params[:message][:stream_id]}", username: current_user.username, message: CGI::escapeHTML(@message.message).emojify
     end
+    render nothing: true
   end
 
 end

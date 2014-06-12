@@ -30,6 +30,18 @@
 .chat_input {
   
 }
+#stream_container:hover > .player-popout {
+  display: block;
+}
+.player-popout {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-weight: bold;
+  text-shadow: 1px 1px #000;
+  font-size: 16px;
+}
 .live-tag {
   background-color: rgba(0,0,0,0.5);
   border-radius: 2px;
