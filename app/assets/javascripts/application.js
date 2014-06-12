@@ -13,9 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootsy
-//= require jwplayer
 //= require bootstrap
 //= require private_pub
-//= require streams
-//= require dash.min
 //= require swfobject
