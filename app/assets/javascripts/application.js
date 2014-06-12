@@ -18,3 +18,4 @@
 //= require private_pub
 //= require streams
 //= require dash.min
+//= require swfobject

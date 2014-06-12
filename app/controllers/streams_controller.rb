@@ -32,7 +32,7 @@ class StreamsController < ApplicationController
     @stream.public_key = SecureRandom.hex(6)
     @stream.private_key = SecureRandom.hex(12)
     @stream.user_id = current_user.id
-    
+
     if @stream.save
       redirect_to @stream
     end
@@ -62,7 +62,7 @@ class StreamsController < ApplicationController
     render :layout => false
   end
   
-  def smil
+  def popout
     @stream = Stream.friendly.find(params[:id])
     render :layout => false
   end

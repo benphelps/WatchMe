@@ -1,6 +1,9 @@
 <% @streams.each do |stream| %>
 <div class="col-md-4 stream-block">
-  <%= link_to image_tag((stream.live ? '/preview/' + stream.user.username + '_small.png' : stream.placeholder_url), class: 'img-responsive'), stream %>
+  <%= link_to image_tag((stream.live ? '/preview/' + stream.user.username + '_small.jpg' : stream.placeholder_url), class: 'img-responsive'), stream %>
+  <% if stream.live %>
+    <div class="live-tag"><span class="glyphicon glyphicon-facetime-video live-dot"></span>Live</div>
+  <% end %>
   <h3><%= link_to stream.name, stream %></h3>
   <p><%= stream.description %></p>
 </div>

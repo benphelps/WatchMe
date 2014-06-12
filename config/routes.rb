@@ -13,13 +13,13 @@ WatchMe::Application.routes.draw do
   
   post '/notify' => 'notify#handle'
   get '/notify' => 'notify#handle'
+  
   get '/publish' => 'streams#info', as: 'publish'
   get '/publish/fmle.xml' => 'streams#fmle', as: 'fmle'
-  get '/pubauth' => 'publish#publish'
+  
   get '/:id' => 'streams#show'
-  get '/dash/:id' => 'streams#dash'
-  get '/hls/:id' => 'streams#hls'
-  get '/streams/:id/source.smil' => 'streams#smil', as: 'smil'
+  get '/vod/:name' => 'vods#index', as: 'vod'
+  get '/vod/:name/:id' => 'vods#show', as: 'vod_show'
   
   root 'home#index'
 

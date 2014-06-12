@@ -1,0 +1,53 @@
+<div class="row">
+
+  <!-- left --> 
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <!-- player --> 
+    <div id="stream_container">
+      <div id="player">
+        <video style="height: 433px; width: 770px;" src="http://<%= Settings.rtmp.server %>/vod/<%= @vod.basename %>.mp4" controls="true"></video>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <h3><%= @vod.title %></h3>
+    <p><%= @vod.description %></p>
+  </div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+  var parameters = {
+    poster: "<%= '/preview/' + @vod.basename + '.jpg' %>",
+  <% if params[:mp4] %>
+    src: "http://<%= Settings.rtmp.server %>/mp4/<%= @vod.basename %>.mp4",
+    optimizeBuffering : true,
+    optimizeInitialIndex: true,
+  <% else %>
+    src: "rtmp://<%= Settings.rtmp.server %>/vod/<%= @vod.basename %>.mp4",
+    optimizeBuffering : false,
+    optimizeInitialIndex: false,
+  <% end %>
+    autoPlay: 'false',
+    controlBarAutoHide: true,
+    controlBarAutoHideTimeout: 1,
+    controlBarMode: "floating",
+    playButtonOverlay: true,
+    streamType: "recorded",
+  };
+  swfobject.embedSWF(
+    "/StrobeMediaPlayback.swf",
+    "player",
+    770,
+    433,
+    "10.1.0",
+    "/expressInstall.swf",
+    parameters,
+    { allowFullScreen: "true", allowScriptAccess: 'always', wmode: 'opaque' },
+    { name: "player" }
+  );
+});
+</script>

@@ -14,26 +14,30 @@ class Stream < ActiveRecord::Base
     
   friendly_id :username, use: :slugged
   
-  def add_viewer
-    self.viewers = self.viewers + 1
-    self.save
-  end
-
-  def remove_viewer
-    if self.viewers >= 1
-      self.viewers = self.viewers - 1
-      self.save
-    end
-  end
+  has_many :vods
   
-  def go_live
+  def go_live(client_id, client_ip)
     self.live = true
-    self.save
+    self.viewers = 0
+    self.client_id = client_id
+    self.client_ip = client_ip
+    save
   end
   
   def go_dark
     self.live = false
-    self.save
+    self.viewers = 0
+    save
+  end
+  
+  def add_viewer
+    self.viewers += 1
+    save
+  end
+  
+  def remove_viewer
+    self.viewers -= 1
+    save
   end
 
 end

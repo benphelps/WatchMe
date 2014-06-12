@@ -1,10 +1,7 @@
 development:
-  server: "http://watchme.dev/sock"
-  secret_token: "secret"
-test:
-  server: "http://localhost:9292/faye"
-  secret_token: "secret"
+  server: "http://watchme.dev/sock/faye"
+  secret_token: "d4bc86ba201228bbe98f0155e92c8079"
 production:
   server: "https://watchme.io/sock/faye"
-  secret_token: "secret"
+  secret_token: "363d6f4b2fc2529064c2279cd33aa098"
   signature_expiration: 3600

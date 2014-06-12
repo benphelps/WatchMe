@@ -17,6 +17,7 @@ body {
 }
 .fixed {
   font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
+  font-size: 12px;
 }
 .stream-block {
   margin-bottom: 35px;
@@ -48,4 +49,8 @@ input[readonly] {
 }
 .navbar {
   border-radius: 0px !important;
+}
+#debug {
+  font-size: 10px;
+  font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
 }

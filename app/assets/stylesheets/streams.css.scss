@@ -3,8 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #stream {
   background-color: #2C3E50;
-  width: 750px;
-  height: 422px;
+
   text-align: center;
   line-height: 422px;
   color: #fff;
@@ -12,9 +11,8 @@
   font-size: 32px;
 }
 .chat {
-  border: 1px #afafaf solid;
   margin-bottom: 5px;
-  height: 382px;
+  height: 348px;
   overflow-y: scroll;
   .message {
     padding: 3px;
@@ -31,4 +29,19 @@
 }
 .chat_input {
   
+}
+.live-tag {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 2px;
+  padding: 0px 5px 0px 5px;
+  font-weight: bold;
+  color: #d2001c;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  pointer-events: none;
+}
+.live-dot {
+  margin-right: 5px;
+  top: 2px !important;
 }

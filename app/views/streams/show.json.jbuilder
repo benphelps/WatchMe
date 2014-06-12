@@ -1,1 +1,1 @@
-json.extract! @stream, :name, :description, :public_key
+json.extract! @stream, :name, :description

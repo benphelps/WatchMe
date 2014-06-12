@@ -16,3 +16,10 @@
 /tmp
 
 /public/uploads/
+/ssl/
+
+/scratch.txt
+
+/encoding/
+
+*.log
