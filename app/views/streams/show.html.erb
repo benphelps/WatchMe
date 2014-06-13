@@ -82,7 +82,7 @@
       plugin_hls: "/HLSProvider.swf",
       hls_minbufferlength: -1,
       hls_lowbufferlength: 5,
-      hls_maxbufferlength: 30
+      hls_maxbufferlength: 30,
       src: "http://<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8",
     <% else %>
       src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
