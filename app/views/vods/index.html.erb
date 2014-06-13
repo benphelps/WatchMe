@@ -1,6 +1,6 @@
 <% @vods.each do |vod| %>
 <div class="col-md-4 stream-block">
-  <a href="vod_show_path(vod.stream.friendly_id, vod.id)">
+  <a href="<%= vod_show_path(vod.stream.friendly_id, vod.id) %>">
     <div class="preview" style="background-image: url('<%= vod.stream.placeholder_url %>');">
       <div class="preview" style="background-image: url('<%= '/preview/' + vod.basename + '_small.jpg' %>');"></div>
     </div>
