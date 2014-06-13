@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12 col-lg-6">
+    <h3>Encoder Requirements</h3>
+    <p>
+      For the best streaming quality and experience, we
+      <strong>
+        highly
+      </strong>
+      recommend the following encoder settings.
+      <hr />
+      <div class="fixed">
+        x264 baseline CBR (1500kbit/s) @ 1280x720 - 96kbit/s AAC Audio
+      </div>
+      <hr />
+      <ul>
+        <li>
+          x264 / h264 encoder
+          <ul>
+            <li>baseline profile</li>
+            <li>constant bitrate</li>
+            <li>25 fps</li>
+            <li>key frame every 2 seconds (50 frames)</li>
+          </ul>
+        </li>
+        <li>
+          AAC Audio
+          <ul>
+            <li>96 kbit/s</li>
+            <li>44.100 kHz</li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+  </div>
+  <div class="col-xs-12 col-md-12 col-lg-6">
+    <h3>RTMP Details</h3>
+    <p>
+      <div class="server">
+        <strong>Server:</strong>
+        <span class="fixed"><%= Settings.rtmp.server %></span>
+      </div>
+      <div class="server">
+        <strong>App:</strong>
+        <span class="fixed"><%= Settings.rtmp.app %></span>
+      </div>
+      <div class="server">
+        <strong>URL:</strong>
+        <span class="fixed">rtmp://<%= Settings.rtmp.server %>/<%= Settings.rtmp.app %></span>
+      </div>
+      <div class="server">
+        <strong>Key:</strong>
+        <span id="key-toggle" class="fixed">Click to show</span>
+        <span id="key" class="fixed"><%= @stream.slug + '?key=' + @stream.private_key %></span>
+      </div>
+    </p>
+    <hr />
+    <%= link_to 'Download Flash Media Live Encoder XML', fmle_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function selectText(element) {
+      var doc = document
+          , text = doc.getElementById(element)
+          , range, selection
+      ;    
+      if (doc.body.createTextRange) { //ms
+          range = doc.body.createTextRange();
+          range.moveToElementText(text);
+          range.select();
+      } else if (window.getSelection) { //all others
+          selection = window.getSelection();        
+          range = doc.createRange();
+          range.selectNodeContents(text);
+          selection.removeAllRanges();
+          selection.addRange(range);
+      }
+  }
+  $(document).ready(function(){
+    $('#key-toggle').click(function(){
+      $('#key-toggle').hide();
+      $('#key').show();
+      selectText('key');
+    });
+    $('#key').click(function(){
+      $('#key').hide();
+      $('#key-toggle').show();
+    });
+  });
+</script>
+

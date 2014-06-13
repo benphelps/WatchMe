@@ -17,7 +17,9 @@ body {
 }
 .fixed {
   font-family: Menlo, Consolas, Monaco, "Lucida Console", monospace;
-  font-size: 12px;
+}
+#key {
+  display: none;
 }
 .stream-block {
   margin-bottom: 35px;
