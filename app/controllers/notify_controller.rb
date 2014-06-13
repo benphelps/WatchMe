@@ -43,9 +43,8 @@ class NotifyController < ApplicationController
             @stream = Stream.find_by_slug(params[:name])
 
             @basename = File.basename(params[:path], ".*")
-            @date = Time.at(@basename.split('-').last.to_i).strftime('%A, %b %d')
-            
-            @vod = Vod.create(stream: @stream, title: @date, description: '', basename: @basename)
+            @date = Time.at(@basename.split('-').last.to_i)
+            @vod = Vod.create(stream: @stream, title: @date.strftime('%A, %b %d'), description: 'Broadcasted on ' + @date.strftime('%A, %d %b %Y %l:%M %p') + '.', basename: @basename)
             @vod.save
             @stream.vods << @vod
             @stream.save

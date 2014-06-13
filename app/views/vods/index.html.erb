@@ -1,7 +1,11 @@
 <% @vods.each do |vod| %>
 <div class="col-md-4 stream-block">
-  <%= link_to image_tag('/preview/' + vod.basename + '_small.jpg', class: 'img-responsive'), vod_show_path(vod.stream.friendly_id, vod.id) %>
-  <h3><%= link_to vod.title, vod_show_path(vod.stream.friendly_id, vod.id)  %></h3>
+  <a href="vod_show_path(vod.stream.friendly_id, vod.id)">
+    <div class="preview" style="background-image: url('<%= vod.stream.placeholder_url %>');">
+      <div class="preview" style="background-image: url('<%= '/preview/' + vod.basename + '_small.jpg' %>');"></div>
+    </div>
+    <h3><%= link_to vod.title, vod_show_path(vod.stream.friendly_id, vod.id)  %></h3>
+  </a>
   <p><%= vod.description %></p>
 </div>
 <% end %>
