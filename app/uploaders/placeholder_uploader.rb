@@ -13,7 +13,7 @@ class PlaceholderUploader < CarrierWave::Uploader::Base
   process :resize_to_fit => [1280, 720]
   
   version :thumb do
-    process :resize_to_fill => [320,180]
+    process :resize_to_fit => [320,180]
   end
 
   def default_url
