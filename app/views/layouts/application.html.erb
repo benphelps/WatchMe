@@ -42,7 +42,7 @@
                 <ul class="dropdown-menu">
                   <% if current_user.stream %>
                     <li><%= link_to 'Publisher API', publish_path %></li>
-                    <li><%= link_to 'Edit Strean', edit_stream_path(current_user.stream) %></li>
+                    <li><%= link_to 'Edit Stream', edit_stream_path(current_user.stream) %></li>
                   <% else %>
                     <li><%= link_to 'Setup Stream', new_stream_path %></li>
                   <% end %>
