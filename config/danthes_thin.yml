@@ -1,0 +1,7 @@
+---
+port: 4443
+ssl: true
+ssl_key_file: /home/watchme/certs/watchme.io.key
+ssl_cert_file: /home/watchme/certs/watchme.io.pem
+environment: production
+rackup: danthes.ru

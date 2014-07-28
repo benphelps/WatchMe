@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -25,19 +25,21 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'ledermann-rails-settings'
 gem 'jbuilder', '~> 1.2'
-
+gem 'sprockets-rails'
 gem 'devise'
 gem 'haml-rails'
 gem 'friendly_id', '~> 5.0.0'
-gem 'private_pub'
+gem 'yajl-ruby'
+gem 'danthes', '1.0.4'
 gem 'thin'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'rails_config'
-gem 'bootsy'
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'bootsy', github: 'volmer/bootsy'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick', '~> 3.7.0'
 gem 'nokogiri'
 gem 'multi_xml'
 gem 'rails_emoji', '~> 1.7.1'
@@ -58,3 +60,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "faye-redis"

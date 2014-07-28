@@ -1,7 +1,0 @@
----
-port: 4443
-ssl: true
-ssl_key_file: /Users/phelps/Projects/WatchMe/ssl/server.key
-ssl_cert_file: /Users/phelps/Projects/WatchMe/ssl/server.crt
-environment: development
-rackup: private_pub.ru
