@@ -6,15 +6,7 @@ class StreamsController < ApplicationController
   def index
     @streams = Stream.all
   end
-  
-  def dash
-    @stream = Stream.friendly.find(params[:id])
-  end
-  
-  def hls
-    @stream = Stream.friendly.find(params[:id])
-  end
-  
+
   def new
     if current_user.stream
       redirect_to current_user.stream
@@ -69,6 +61,11 @@ class StreamsController < ApplicationController
 
   def show
     @stream = Stream.friendly.find(params[:id])
+    gon.stream = @stream
+    gon.push({
+      stream_id: @stream.id
+    })
+    gon.watch.viewer_count = ( @stream.viewers <= 0 ? 0 : @stream.viewers )
   end
 
   private

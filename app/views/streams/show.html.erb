@@ -4,22 +4,22 @@
     <p><%= @stream.description %></p>
   </div>
 </div>
- 
 <div class="row">
-
   <!-- left --> 
   <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
     <!-- player --> 
     <div id="stream_container">
-      <div class="player-popout">
-        <a href="<%= stream_popout_path(@stream) %>" onclick="return popout();"><span class="glyphicon glyphicon-new-window"></span></a>
-      </div>
       <div id="player">
-        <video style="height: 433px; width: 770px;" src="//<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8" controls="true"></video>
+        <!-- PLAYER_PARTIAL -->
+          <% if @stream.live? %>
+            <%= render 'streams/players/' + current_user.settings(:player).tech %>
+          <% else %>
+            <%= render 'streams/players/offline' %>
+          <% end %>
+        <!-- END PLAYER_PARTIAL -->
       </div>
     </div>
   </div>
-    
   <!-- right --> 
   <div class="col-xs-12 col-sm-12 cold-md-4 col-lg-4">
       <!-- chat -->
@@ -28,8 +28,8 @@
           <div class="well">
             <div id="chat" class="chat">
             <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
-              <div class="message">
-              <span class="name"><%= message.user.username %></span>
+            <div class="message">
+              <span class="name" style="color:#<%= message.user.settings(:chat).color %>;"><%= message.user.username %>:</span>
               <span class="body"><%= message.message.emojify.html_safe %></span>
             </div>
             <% end %>
@@ -38,7 +38,7 @@
           <div class="chat_input">
             <%= form_for @stream.messages.new do |f| %>
               <%= f.hidden_field :stream_id %>
-              <%= f.text_field :message, class: 'form-control' %>
+              <%= f.text_area :message, class: 'form-control no-autocomplete', rows: 1 %>
             <% end %>
           </div>
         <% else %>
@@ -62,105 +62,18 @@
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
     <div class="well">
       <div>
-        <strong>Viewers:</strong> <%= @stream.live ? @stream.viewers : 'Offline' %>
+        <strong>Viewers:</strong> <span id="viewer_count"></span>
       </div>
       <div>
-        <strong>Views:</strong> n/a
+        <strong>Views:</strong> NYI
       </div>
     </div>
   </div>
 </div>
-
-<%= subscribe_to "/channel/#{@stream.id}" %>
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function(){
-
-    var parameters = {
-      poster: "<%= (@stream.live ? '/preview/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
-    <% if params[:hls] %>
-      // HLS Streaming
-      plugin_hls: "/HLSProvider.swf",
-      hls_minbufferlength: -1,
-      hls_lowbufferlength: 5,
-      hls_maxbufferlength: 30,
-      src: "http://<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8",
-    <% else %>
-      src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
-    <% end %>
-      autoPlay: <%= (@stream.live ? 'true' : 'false') %>,
-      controlBarAutoHide: true,
-      controlBarAutoHideTimeout: 1,
-      playButtonOverlay: false,
-      optimizeBuffering : false,
-      optimizeInitialIndex: false,
-      streamType: "live",
-      javascriptCallbackFunction: "createJSBridge",
-    };
-    swfobject.embedSWF(
-      "/StrobeMediaPlayback.swf",
-      "player",
-      770,
-      433,
-      "10.1.0",
-      "/expressInstall.swf",
-      parameters,
-      { allowFullScreen: "true", allowScriptAccess: 'always', wmode: 'opaque' },
-      { name: "player" }
-    );
-    
-    // scroll chat
-    $('#chat').stop().animate({
-      scrollTop: $("#chat")[0].scrollHeight
-    }, 200);
-    
-    // chat
-    setTimeout(function(){
-      PrivatePub.subscribe("/channel/<%= @stream.id %>", function(data, channel) {
-        $("#chat").append('<div class="message"><span class="name">' + data.username + '</span><span class="body">' + data.message + '</span></div>');
-        $('#chat').stop().animate({
-          scrollTop: $("#chat")[0].scrollHeight
-        }, 250);
-      });
-    }, 1000);
-    
-    $('form#new_message').submit(function() {
-      if ($('#message_message').val() != "") {
-        var valuesToSubmit = $(this).serialize();
-        $.ajax({
-          type: "POST",
-          url: $(this).attr('action'),
-          data: valuesToSubmit,
-          dataType: "HTML" 
-        }).success(function(data){
-          $('#message_message').val('');
-        });
-      }
-      return false;
-    });
-
-  });
-  
-  var player = null;
-  function createJSBridge(id) {
-    if (player == null) {
-      player = document.getElementById(id);
-    }
-  }
-  var popUp = null;
-  function popout() {
-    popUp = window.open(
-      '<%= stream_popout_path(@stream) %>',
-      'targetWindow',
-      'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=770,height=433'
-    );
-    popUp.onunload = function() {
-      setTimeout(function(){
-        if (popUp.closed) {
-          player.play2();
-        }
-      }, 50);
-    }
-    player.pause();
-    return false;
-  }
+<script id="message_tpl" type="x-tmpl-mustache">
+  <div id="msg_{{id}}" class="message">
+    <span class="name" style="color:#{{color}};">{{username}}:</span>
+    <span class="body">{{message}}</span>
+  </div>
 </script>
+<%= subscribe_to "/stream/#{@stream.id}" %>

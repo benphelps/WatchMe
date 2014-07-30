@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require mustache
+//= require jquery.mustache
 //= require bootsy
 //= require bootstrap
-//= require private_pub
-//= require swfobject
+//= require danthes
+//= require swfobject.min
+//= require swffit.min
+//= require gistyle
+//= require_tree .

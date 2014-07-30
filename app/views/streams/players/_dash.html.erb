@@ -1,0 +1,12 @@
+<video id="dash_video" style="height: 422px; width: 750px; display: block;" controls="true"></video>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    var video = document.querySelector("#dash_video");
+    var context = new Dash.di.DashContext();
+    var player = new MediaPlayer(context);
+    player.startup();
+    player.attachView(video);
+    player.setAutoPlay(false);
+    player.attachSource("http://<%= Settings.rtmp.server %>/dash/<%= @stream.user.username %>/index.mpd");
+  });
+</script>

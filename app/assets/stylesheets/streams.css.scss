@@ -10,6 +10,14 @@
   font-weight: bold;
   font-size: 32px;
 }
+.offline {
+  text-align: center;
+  line-height: 433px;
+  font-weight: bold;
+  font-size: 32px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #333;
+}
 .chat {
   margin-bottom: 5px;
   height: 348px;
@@ -19,18 +27,15 @@
     .name {
       font-weight: bold;
     }
-    .name:after {
-      content: ':';
-    }
     .body {
       margin-left: 5px;
     }
   }
 }
-.chat_input {
-  
+.no-autocomplete {
+  resize: none;
 }
-#stream_container:hover > .player-popout {
+#player:hover > .player-popout {
   display: block;
 }
 .player-popout {

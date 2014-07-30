@@ -1,0 +1,55 @@
+<video style="height: 433px; width: 770px;" src="//<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8" controls="true"></video>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    var parameters = {
+      poster: "<%= (@stream.live ? '/preview/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
+      plugin_hls: "/HLSProvider.swf",
+      hls_minbufferlength: -1,
+      hls_lowbufferlength: 5,
+      hls_maxbufferlength: 30,
+      src: "http://<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8",
+      autoPlay: <%= (@stream.live ? 'true' : 'false') %>,
+      controlBarAutoHide: true,
+      controlBarAutoHideTimeout: 1,
+      playButtonOverlay: false,
+      optimizeBuffering : false,
+      optimizeInitialIndex: false,
+      streamType: "live",
+      javascriptCallbackFunction: "createJSBridge",
+    };
+    swfobject.embedSWF(
+      "/StrobeMediaPlayback.swf",
+      "player",
+      770,
+      433,
+      "10.1.0",
+      "/expressInstall.swf",
+      parameters,
+      { allowFullScreen: "true", allowScriptAccess: 'always', wmode: 'opaque' },
+      { name: "player" }
+    );
+  });
+  var player = null;
+  function createJSBridge(id) {
+    if (player == null) {
+      player = document.getElementById(id);
+    }
+  }
+  var popUp = null;
+  function popout() {
+    popUp = window.open(
+      '<%= stream_popout_path(@stream) %>',
+      'targetWindow',
+      'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=770,height=433'
+    );
+    popUp.onunload = function() {
+      setTimeout(function(){
+        if (popUp.closed) {
+          player.play2();
+        }
+      }, 50);
+    }
+    player.pause();
+    return false;
+  }
+</script>
