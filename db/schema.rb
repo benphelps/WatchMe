@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612112641) do
+ActiveRecord::Schema.define(version: 20140726231839) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20140612112641) do
     t.datetime "updated_at"
   end
 
+  create_table "settings", force: true do |t|
+    t.string   "var",         null: false
+    t.text     "value"
+    t.integer  "target_id",   null: false
+    t.string   "target_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], name: "index_settings_on_target_type_and_target_id_and_var", unique: true
+
   create_table "streams", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -63,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140612112641) do
     t.boolean  "live"
     t.integer  "client_id"
     t.string   "client_ip"
+    t.string   "server"
   end
 
   create_table "users", force: true do |t|
@@ -93,6 +105,8 @@ ActiveRecord::Schema.define(version: 20140612112641) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "stream_id"
+    t.integer  "date"
+    t.string   "server"
   end
 
 end

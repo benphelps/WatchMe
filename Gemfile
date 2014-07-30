@@ -25,6 +25,10 @@ gem 'jquery-rails'
 # gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'mustache-js-rails'
+gem 'gistyle'
+gem 'gon'
+gem 'color-generator'
 gem 'ledermann-rails-settings'
 gem 'jbuilder', '~> 1.2'
 gem 'sprockets-rails'

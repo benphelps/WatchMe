@@ -63,6 +63,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.1)
+    color-generator (0.0.4)
     cookiejar (0.3.2)
     daemons (1.1.9)
     danthes (1.0.4)
@@ -105,6 +106,12 @@ GEM
       websocket-driver (>= 0.3.1)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    gistyle (1.0.0)
+    gon (5.1.2)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -135,6 +142,8 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    mustache-js-rails (0.0.9)
+      railties (>= 3.1, <= 5.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
@@ -165,6 +174,7 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     remotipart (1.2.1)
+    request_store (1.0.8)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -214,16 +224,20 @@ DEPENDENCIES
   bootsy!
   carrierwave!
   coffee-rails (~> 4.0.0)
+  color-generator
   danthes (= 1.0.4)
   devise
   faye-redis
   friendly_id (~> 5.0.0)
+  gistyle
+  gon
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
   ledermann-rails-settings
   mini_magick (~> 3.7.0)
   multi_xml
+  mustache-js-rails
   nokogiri
   rails (= 4.1.0)
   rails_config
