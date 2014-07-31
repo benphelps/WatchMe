@@ -8,11 +8,19 @@
   <!-- left --> 
   <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
     <!-- player --> 
+    <div class="player-popout">
+      <a href="<%= stream_popout_path(@stream) %>" onclick="return popout();"><span class="glyphicon glyphicon-new-window"></span></a>
+    </div>
     <div id="stream_container">
       <div id="player">
         <!-- PLAYER_PARTIAL -->
+          
           <% if @stream.live? %>
-            <%= render 'streams/players/' + current_user.settings(:player).tech %>
+            <% if user_signed_in? %>
+              <%= render 'streams/players/' + current_user.settings(:player).tech %>
+            <% else %>
+              <%= render 'streams/players/hls' %>
+            <% end %>
           <% else %>
             <%= render 'streams/players/offline' %>
           <% end %>

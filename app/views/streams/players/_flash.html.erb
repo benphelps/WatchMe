@@ -30,21 +30,5 @@
       player = document.getElementById(id);
     }
   }
-  var popUp = null;
-  function popout() {
-    popUp = window.open(
-      '<%= stream_popout_path(@stream) %>',
-      'targetWindow',
-      'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=770,height=433'
-    );
-    popUp.onunload = function() {
-      setTimeout(function(){
-        if (popUp.closed) {
-          player.play2();
-        }
-      }, 50);
-    }
-    player.pause();
-    return false;
-  }
+  
 </script>
