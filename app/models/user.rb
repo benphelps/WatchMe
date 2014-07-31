@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
       :volume => '50'
     }
     s.key :chat, :defaults => {
-      color: 'ffffff'
+      color: '000000'
     }
   end
   
