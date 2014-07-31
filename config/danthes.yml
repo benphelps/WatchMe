@@ -1,11 +1,10 @@
 development:
   adapter: thin
   server: "http://watchme.dev"
-  secret_token: "secret"
   mount: '/sock'
+  secret_token: "secret"
 production:
   adapter: thin
   server: "https://watchme.io"
   mount: '/sock'
-  secret_token: "54nmtNx4j9KtY4jsjNGTdRwERAWYDb6bh2uktKaJvz53MVbq"
-  signature_expiration: 3600 # one hour
+  secret_token: "54nmhtNx4j9KtYw4jsjNGTdRdwE3RAWYDb6bh2u6ktKaJvz53MVbq"
