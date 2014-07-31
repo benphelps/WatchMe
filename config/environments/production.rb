@@ -4,9 +4,6 @@ WatchMe::Application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  # RTMP Settings
-  config.rtmp_server = 'rtmp://live.watchme.io/stream'
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
@@ -43,7 +40,7 @@ WatchMe::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
