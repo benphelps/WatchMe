@@ -5,6 +5,6 @@ development:
   secret_token: "secret"
 production:
   adapter: thin
-  server: "http://watchme.io"
+  server: "https://watchme.io"
   mount: '/sock'
   secret_token: "54nmhtNx4j9KtYw4jsjNGTdRdwE3RAWYDb6bh2u6ktKaJvz53MVbq"
