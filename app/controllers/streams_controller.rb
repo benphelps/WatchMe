@@ -28,8 +28,9 @@ class StreamsController < ApplicationController
 
     if @stream.save
       redirect_to @stream
+    else
+      redirect_to new_stream_path
     end
-  
   end
   
   def edit
