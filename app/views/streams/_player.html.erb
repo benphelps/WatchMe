@@ -7,6 +7,11 @@
 <% else %>
   <%= render 'streams/players/offline' %>
 <% end %>
+<script id="html5v_tpl" type="x-tmpl-mustache">
+  <video id="html5_player" poster="/live/jpg/{{ username }}.jpg" controls="true">
+    <source src="//<%= Settings.rtmp.server %>/hls/{{ username }}/index.m3u8" type="application/x-mpegURL"></source>
+  </video>
+</script>
 <script type="text/javascript" charset="utf-8">
   var orig_h = 433;
   $(window).resize(function() {

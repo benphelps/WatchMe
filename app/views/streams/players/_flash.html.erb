@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     var parameters = {
-      poster: "<%= (@stream.live ? '/preview/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
+      poster: "<%= (@stream.live ? '/live/jpg/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
       src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
       plugin_ads: "/AdvertisementPlugin.swf",
       autoPlay: true,
@@ -27,7 +27,7 @@
       );
     }
     else {
-      $('#player').html('<video id="html5_player" src="//<%= Settings.rtmp.server %>/hls/<%= @stream.user.username %>/index.m3u8" controls="true"></video>');
+      $('#player').html(Mustache.render($('#html5v_tpl').html(), { username: <%= @stream.user.username %> }));
     }
   });
   var player = null;
