@@ -21,4 +21,7 @@
 //= require swffit.min
 //= require gistyle
 //= require rest_in_place
+//= require markdown.converter
+//= require markdown.sanitizer
+//= require markdown.editor
 //= require_tree .

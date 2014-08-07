@@ -5,17 +5,18 @@
   .row
     .col-xs-12.col-md-6.col-lg-6
       .form-group
-        = f.label :name
+        = f.label :name, 'Broadcast Name'
         = f.text_field :name, class: 'form-control'
     .col-xs-12.col-md-6.col-lg-6
       .form-group
-        = f.label :description
+        = f.label :description, 'Broadcast Description'
         = f.text_field :description, class: 'form-control'
   .row
     .col-xs-12.col-md-12.col-lg-12
       .form-group
-        = f.label :body
-        = f.bootsy_area :body, class: 'form-control', rows: '15'
+        .wmd-panel
+          #wmd-button-bar
+          = f.text_area :body, class: 'form-control wmd-input', rows: '10'
   %hr
   .row
     .col-xs-12.col-md-6.col-lg-6

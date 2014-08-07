@@ -28,6 +28,7 @@ class Watchme
   handleUpdate: (data) ->
     $('#stream_name').html(data.stream.name);
     $('#stream_desc').html(data.stream.desc);
+    $('#stream_body').html(data.stream.markdown);
     
   handleLive: (data) ->
     $.get "/#{@stream_name}/player", (data) ->
@@ -76,11 +77,43 @@ class Player
 APP.streams = 
   init: () ->
     # Empty
-
+  _form: () ->
+    
   show: () ->
     
     # Connect to the websocket and setup chat
     watchme = new Watchme
+    
+    RestInPlaceEditor.forms["markdown"] =
+        activateForm : ->
+          value = $.trim(@elementHTML())
+          @$element.html("""<div class="row"><div class="col-xs-12"><form action="javascript:void(0)" style="display:inline;">
+<div class="wmd-panel"><div id="wmd-button-bar"></div>
+<textarea id="wmd-textarea" class="form-control wmd-input rest-in-place-#{@attributeName}" rows="10" placeholder="#{@placeholder}"></textarea>
+  <input class="btn btn-sm btn-primary" type="submit" value="Save Changes">
+</div></form></div></div>""")
+          @$element.find('textarea').val(value)
+          @$element.find('textarea')[0].select()
+          @$element.find("textarea").keyup (e) =>
+            @abort() if e.keyCode == 27
+          @$element.find("input[type=submit]").click => @update()
+        getValue : ->
+          @$element.find("textarea").val()
+    
+    $('#stream_body').bind 'activate.rest-in-place', (event) ->
+      
+    
+    $('#stream_body').bind 'ready.rest-in-place', (event, json) ->
+      $('#wmd-textarea').val($('#stream_markdown').val())
+      converter = Markdown.getSanitizingConverter()
+      editor = new Markdown.Editor converter
+      editor.run()
+      
+    $('#stream_body').bind 'success.rest-in-place', (event, json) ->
+      $('#stream_markdown').val(json.markdown)
+      $el = $(this);
+      $el.html(json.body)
+      console.log json
     
     # Handle form submits
     $('form#new_message').keypress (event) ->

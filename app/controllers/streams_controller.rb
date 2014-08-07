@@ -25,11 +25,10 @@ class StreamsController < ApplicationController
     @stream.public_key = SecureRandom.hex(6)
     @stream.private_key = SecureRandom.hex(12)
     @stream.user_id = current_user.id
-
     if @stream.save
       redirect_to @stream
     else
-      redirect_to new_stream_path
+      render action: 'new'
     end
   end
   
@@ -42,12 +41,12 @@ class StreamsController < ApplicationController
     if @stream.update(stream_params)
       respond_to do |format|
         format.html { redirect_to @stream, success: 'Your stream was successfully updated.' }
-        format.json { render :json => @stream }
+        format.json { render :json => {  name: @stream.name, body: @stream.markdown, markdown: @stream.body  } }
       end
       Danthes.publish_to(
         "/stream/#{@stream.id}",
         type: 'info_update',
-        stream: { name: @stream.name, description: @stream.description }
+        stream: { name: @stream.name, description: @stream.description, markdown: @stream.markdown }
       )
     else
       render action: 'edit'

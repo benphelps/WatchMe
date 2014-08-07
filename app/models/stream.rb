@@ -17,6 +17,10 @@ class Stream < ActiveRecord::Base
   has_many :vods
   has_many :subscriptions
   
+  def markdown
+    Kramdown::Document.new(body).to_html.html_safe
+  end
+  
   def go_live(client_id, client_ip)
     self.live = true
     self.viewers = 0

@@ -15,6 +15,17 @@
     color: #aaa;
   }
 }
+.rip-active {
+  &:after {
+    display: none;
+  }
+  
+}
+.wmd-input {
+  width: 100% !important;
+  margin-bottom: 10px;
+  height: 350px;
+}
 .cant-chat {
   border-top: 1px #CCC solid;
   padding: 7px;
@@ -88,6 +99,12 @@
   right: 30px;
   top: 5px;
   pointer-events: none;
+}
+#stream_body {
+  width: 100%;
+}
+#wmd-button-bar {
+  margin-bottom: 10px;
 }
 .live-dot {
   margin-right: 5px;

@@ -1,88 +1,91 @@
-<div class="row">
-  <div class="col-xs-12 cold-md-12 col-lg-12 header" id="<%= dom_id @stream %>">
-    <h3><span class="rest-in-place" data-object="stream" data-attribute="name" id="stream_name"><%= @stream.name %></span></h3>
+<div id="<%= dom_id @stream %>">
+  <div class="row">
+    <div class="col-xs-12 cold-md-12 col-lg-12 header">
+      <h3><span class="rest-in-place" data-attribute="name" id="stream_name"><%= @stream.name %></span></h3>
+    </div>
   </div>
-</div>
-
-<div class="row">
-
-  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-    
-    <div id="stream_container">
-      <div class="player-popout">
-        <a href="#" onclick="return popout();"><span class="glyphicon glyphicon-new-window"></span></a>
-      </div>
-      <div id="player_updater">
-        <div id="player">
-          <%= render 'streams/player' %>
+  
+  <div class="row">
+  
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+  
+      <div id="stream_container">
+        <div class="player-popout">
+          <a href="#" onclick="return popout();"><span class="glyphicon glyphicon-new-window"></span></a>
         </div>
+        <div id="player_updater">
+          <div id="player">
+            <%= render 'streams/player' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 chat-pad">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Live Chat
+        </div>
+        <div id="chat" class="panel-body chat">
+          <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
+            <div class="message">
+              <span class="name" style="color:#<%= message.user.settings(:chat).color %>;"><%= message.user.username %>:</span>
+              <span class="body"><%= message.message.emojify.html_safe %></span>
+            </div>
+          <% end %>
+        </div>
+  
+          <div class="chat_input">
+            <% if user_signed_in? %>
+              <%= form_for @stream.messages.new do |f| %>
+                <%= f.hidden_field :stream_id %>
+                <%= f.text_area :message, class: 'form-control no-autocomplete', rows: 1 %>
+              <% end %>
+            <% else %>
+              <div class="cant-chat">
+                <%= link_to 'Login', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to chat.
+              </div>
+            <% end %>
+          </div>
       </div>
     </div>
   </div>
   
-  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 chat-pad">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Live Chat
+  <div class="row">
+    <!-- stats --> 
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Channel Info
+        </div>
+        <div class="panel-body">
+          <textarea id="stream_markdown" style="display:none;"><%= @stream.body %></textarea>
+          <span class="rest-in-place" data-formtype="markdown" data-attribute="body" id="stream_body"><%= @stream.markdown %></span>
+        </div>
       </div>
-      <div id="chat" class="panel-body chat">
-        <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
-          <div class="message">
-            <span class="name" style="color:#<%= message.user.settings(:chat).color %>;"><%= message.user.username %>:</span>
-            <span class="body"><%= message.message.emojify.html_safe %></span>
+    </div>
+    <!-- info --> 
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Channel Stats
+        </div>
+        <div class="panel-body">
+          <div>
+            <strong>Viewers:</strong> <span id="viewer_count"></span>
           </div>
-        <% end %>
-      </div>
-      
-        <div class="chat_input">
-          <% if user_signed_in? %>
-            <%= form_for @stream.messages.new do |f| %>
-              <%= f.hidden_field :stream_id %>
-              <%= f.text_area :message, class: 'form-control no-autocomplete', rows: 1 %>
-            <% end %>
-          <% else %>
-            <div class="cant-chat">
-              <%= link_to 'Login', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to chat.
-            </div>
-          <% end %>
+          <div>
+            <strong>Views:</strong> NYI
+          </div>
         </div>
+      </div>
     </div>
   </div>
+  <script id="message_tpl" type="x-tmpl-mustache">
+    <div id="msg_{{id}}" data-user-id="{{user_id}}" data-id="{{id}}" class="message">
+      <span class="name" style="color:#{{color}};">{{username}}:</span>
+      <span class="body">{{message}}</span>
+    </div>
+  </script>
+  <%= subscribe_to "/stream/#{@stream.id}" %>
 </div>
-
-<div class="row">
-  <!-- stats --> 
-  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Channel Info
-      </div>
-      <div class="panel-body">
-        <%= @stream.body.html_safe %>
-      </div>
-    </div>
-  </div>
-  <!-- info --> 
-  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Channel Stats
-      </div>
-      <div class="panel-body">
-        <div>
-          <strong>Viewers:</strong> <span id="viewer_count"></span>
-        </div>
-        <div>
-          <strong>Views:</strong> NYI
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script id="message_tpl" type="x-tmpl-mustache">
-  <div id="msg_{{id}}" data-user-id="{{user_id}}" data-id="{{id}}" class="message">
-    <span class="name" style="color:#{{color}};">{{username}}:</span>
-    <span class="body">{{message}}</span>
-  </div>
-</script>
-<%= subscribe_to "/stream/#{@stream.id}" %>
