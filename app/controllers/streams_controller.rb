@@ -70,6 +70,7 @@ class StreamsController < ApplicationController
 
   def show
     @stream = Stream.friendly.find(params[:id])
+    @owned = user_signed_in? && (current_user.try(:stream) === @stream)
     gon.push({
       stream_id: @stream.id,
       stream_name: @stream.name

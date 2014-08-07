@@ -1,7 +1,11 @@
 <div id="<%= dom_id @stream %>">
   <div class="row">
     <div class="col-xs-12 cold-md-12 col-lg-12 header">
-      <h3><span class="rest-in-place" data-attribute="name" id="stream_name"><%= @stream.name %></span></h3>
+      <% if @owned %>
+        <h3><span class="rest-in-place" data-attribute="name" id="stream_name"><%= @stream.name %></span></h3>
+      <% else %>
+        <h3><%= @stream.name %></h3>
+      <% end %>
     </div>
   </div>
   
@@ -59,8 +63,12 @@
           Channel Info
         </div>
         <div class="panel-body">
-          <textarea id="stream_markdown" style="display:none;"><%= @stream.body %></textarea>
-          <span class="rest-in-place" data-formtype="markdown" data-attribute="body" id="stream_body"><%= @stream.markdown %></span>
+          <% if @owned %>
+            <textarea id="stream_markdown" style="display:none;"><%= @stream.body %></textarea>
+            <span class="rest-in-place" data-formtype="markdown" data-attribute="body" id="stream_body"><%= @stream.markdown %></span>
+          <% else %>
+            <%= @stream.markdown %>
+          <% end %>
         </div>
       </div>
     </div>
