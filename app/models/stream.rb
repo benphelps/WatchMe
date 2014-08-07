@@ -15,6 +15,7 @@ class Stream < ActiveRecord::Base
   friendly_id :username, use: :slugged
   
   has_many :vods
+  has_many :subscriptions
   
   def go_live(client_id, client_ip)
     self.live = true

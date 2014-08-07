@@ -1,7 +1,8 @@
 require 'securerandom'
 class StreamsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :info, :fmle]
+  before_action :authenticate_user!, except: [:index, :show, :popout]
+  before_action :authenticate_stream!, only: [:update]
 
   def index
     @streams = Stream.all
@@ -38,7 +39,15 @@ class StreamsController < ApplicationController
   def update
     @stream = current_user.stream
     if @stream.update(stream_params)
-      redirect_to @stream, notice: 'Your stream was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @stream, success: 'Your stream was successfully updated.' }
+        format.json { render :json => @stream }
+      end
+      Danthes.publish_to(
+        "/stream/#{@stream.id}",
+        type: 'info_update',
+        stream: { name: @stream.name, description: @stream.description }
+      )
     else
       render action: 'edit'
     end
@@ -61,14 +70,38 @@ class StreamsController < ApplicationController
 
   def show
     @stream = Stream.friendly.find(params[:id])
-    gon.stream = @stream
     gon.push({
-      stream_id: @stream.id
+      stream_id: @stream.id,
+      stream_name: @stream.name
     })
-    gon.watch.viewer_count = ( @stream.viewers <= 0 ? 0 : @stream.viewers )
+  end
+  
+  def player
+    @stream = Stream.friendly.find(params[:id])
+    gon.push({
+      stream_id: @stream.id,
+      stream_name: @stream.name
+    })
+    render :partial => 'player', :content_type => 'text/html'
+  end
+  
+  def subscribe
+    @stream = Stream.find(params[:id])
+    sub = Subscription.new(user: current_user, stream: @stream)
   end
 
   private
+  
+  def authenticate_stream!
+    @stream = Stream.friendly.find(params[:id])
+    if current_user.stream != @stream then
+      
+      respond_to do |format|
+        format.html { render text: 'Unauthorized!' }
+        format.json { render :json => {error: 'Unauthorized!'} }
+      end
+    end
+  end
   
   def stream_params
     params.require(:stream).permit(:name, :description, :body, :bootsy_image_gallery_id, :placeholder)

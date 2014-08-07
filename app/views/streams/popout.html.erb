@@ -4,25 +4,31 @@
     <meta charset="utf-8">
     <title>watchme.io - <%= @stream.name %></title>
     <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "streams" %>
     <style type="text/css" media="screen">
       html, body {
-        margin: 0;
-        padding: 0;
+        background-color: #000;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+      }
+      #stream_container {
+        margin: 0px;
+        height: 100% !important;
+        width: 100% !important;
+      }
+      #player {
+        width: 100%;
+        min-height: 100%;
       }
     </style>
 </head>
 <body>
-  <div id="player">
-    <!-- PLAYER_PARTIAL -->
-      <% if @stream.live? %>
-        <%= render 'streams/players/' + current_user.settings(:player).tech %>
-      <% else %>
-        <%= render 'streams/players/offline' %>
-      <% end %>
-    <!-- END PLAYER_PARTIAL -->
-    <script type="text/javascript" charset="utf-8">
-      swffit.fit("player");
-    </script>
+  <div id="stream_container">
+      <div id="player">
+        <%= render 'streams/player_popout' %>
+      </div>
   </div>
 </body>
 </html>

@@ -1,0 +1,12 @@
+<% if @stream.live? %>
+  <% if user_signed_in? %>
+    <%= render 'streams/players/' + current_user.settings(:player).tech %>
+  <% else %>
+    <%= render 'streams/players/hls' %>
+  <% end %>
+<% else %>
+  <%= render 'streams/players/offline' %>
+<% end %>
+<script type="text/javascript" charset="utf-8">
+  
+</script>

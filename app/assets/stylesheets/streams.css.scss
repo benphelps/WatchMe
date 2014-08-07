@@ -1,26 +1,55 @@
 // Place all the styles related to the Streams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.rest-in-place {
+  &:after {
+    font-family: 'Glyphicons Halflings';
+    font-size: 75%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-left: 10px;
+    content: "\270f";
+    color: #eee;
+  }
+  &:hover:after {
+    color: #aaa;
+  }
+}
+.cant-chat {
+  border-top: 1px #CCC solid;
+  padding: 7px;
+  color: #999;
+}
+#stream_container {
+  height: 433px;
+  width: 750px;
+  box-sizing: content-box !important;
+  margin-top: 15px;
+}
+#player {
+  box-sizing: content-box !important;
+  height: 433px;
+  width: 750px;
+}
+.chat-pad {
+  margin-top: 15px;
+}
 #stream {
-  background-color: #2C3E50;
-
-  text-align: center;
-  line-height: 422px;
+  background-color: #000;
   color: #fff;
-  font-weight: bold;
-  font-size: 32px;
 }
 .offline {
-  text-align: center;
-  line-height: 433px;
-  font-weight: bold;
-  font-size: 32px;
-  color: #fff;
-  text-shadow: 1px 1px 1px #333;
+  content: ' ';
+  background-color: #000;
+  color: rgba(255,255,255,0.3);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 .chat {
-  margin-bottom: 5px;
-  height: 348px;
+  height: 353px;
   overflow-y: scroll;
   .message {
     padding: 3px;
@@ -35,17 +64,19 @@
 .no-autocomplete {
   resize: none;
 }
-#player:hover > .player-popout {
+#stream_container:hover > .player-popout {
   display: block;
+  z-index: 999;
 }
 .player-popout {
   display: none;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 25px;
+  top: 25px;
   font-weight: bold;
   text-shadow: 1px 1px #000;
   font-size: 16px;
+  z-index: 999;
 }
 .live-tag {
   background-color: rgba(0,0,0,0.5);
@@ -61,4 +92,30 @@
 .live-dot {
   margin-right: 5px;
   top: 2px !important;
+}
+#new_message textarea {
+  box-shadow: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  padding-bottom: 8px;
+  &:focus {
+    background-color: #fafafa;
+  }
+}
+.rest-in-place {
+  display: inline-block;
+}
+.rest-in-place-name {
+  outline: none;
+  border: none;
+  border-bottom: 1px #317EAC dashed;
+  box-shadow: none;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  display: inline-block;
+}
+.header {
+  height: 45px;
 }

@@ -5,3 +5,7 @@ auth:
   servers:
     - 50.7.99.186
     - 127.0.0.1
+player:
+  tech: 'flash'
+  volume: 0
+  debug: true

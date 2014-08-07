@@ -12,6 +12,10 @@
  *= require bootsy
  *= require_tree .
  */
+ 
+* {
+  outline: none !important;
+}
 body {
   padding-bottom: 40px;
 }

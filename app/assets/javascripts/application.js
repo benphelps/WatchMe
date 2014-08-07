@@ -20,4 +20,5 @@
 //= require swfobject.min
 //= require swffit.min
 //= require gistyle
+//= require rest_in_place
 //= require_tree .

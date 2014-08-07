@@ -11,11 +11,12 @@ class User < ActiveRecord::Base
   
   has_one :stream
   has_many :messages
+  has_many :subscriptions
   
   has_settings do |s|
     s.key :player, :defaults => {
       :tech => 'flash',
-      :volume => '50'
+      :volume => 0.75
     }
     s.key :chat, :defaults => {
       color: '000000'
