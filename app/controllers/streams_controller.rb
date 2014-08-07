@@ -12,7 +12,7 @@ class StreamsController < ApplicationController
     if current_user.stream
       redirect_to current_user.stream
     end
-    @stream = Stream.new(user: current_user, body: 'You can edit this later.')
+    @stream = Stream.new
   end
   
   def create
