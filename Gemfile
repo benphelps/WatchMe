@@ -36,6 +36,7 @@ gem 'rails_emoji', '~> 1.7.1'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
 gem 'capistrano-rvm'
+gem 'capistrano-rails'
 
 group :development do
   gem 'sqlite3'
