@@ -32,6 +32,7 @@ gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick', '~> 3.7.0'
 gem 'nokogiri'
 gem 'multi_xml'
+gem 'non-stupid-digest-assets'
 gem 'rails_emoji', '~> 1.7.1'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
