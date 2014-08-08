@@ -10,3 +10,5 @@ player:
   tech: 'flash'
   volume: 0
   debug: true
+s3:
+  bucket: watchmeio
