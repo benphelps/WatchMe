@@ -1,8 +1,12 @@
 <% if @stream.live? %>
-  <% if user_signed_in? %>
-    <%= render 'streams/players/' + current_user.settings(:player).tech %>
-  <% else %>
+  <% if params[:tech] && ['dash', 'flash', 'hds', 'hls'].include? params[:tech] %>
     <%= render 'streams/players/hls' %>
+  <% else %>
+    <% if user_signed_in? %>
+      <%= render 'streams/players/' + current_user.settings(:player).tech %>
+    <% else %>
+      <%= render 'streams/players/hls' %>
+    <% end %>
   <% end %>
 <% else %>
   <%= render 'streams/players/offline' %>

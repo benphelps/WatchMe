@@ -26,8 +26,7 @@ class User < ActiveRecord::Base
   after_create :set_color
   
   def set_color
-    generator = ColorGenerator.new saturation: 0.3, lightness: 0.75
-    self.settings(:chat).color = generator.create_hex
+    self.settings(:chat).color = Settings.chat.colors.sample
   end
          
 end

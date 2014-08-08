@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Live Chat
+    <% if user_signed_in? %>
+      <span class="float-right">
+        <select id="name_color">
+          <% Settings.chat.colors.each do |color| %>
+            <option value="<%=color%>" data-color="#<%=color%>" <%=( current_user.settings(:chat).color == color ? 'selected="selected"' : '')%>></option>
+          <% end %>
+        </select>
+      </span>
+    <% end %>
+  </div>
+  <div id="chat_panel">
+    <div id="chat" class="panel-body chat">
+      <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
+        <div class="message">
+          <span class="name color-<%=message.user.settings(:chat).color%><%=( user_signed_in? && message.user === current_user ? ' myself' : '' )%>"><%= message.user.username %>:</span>
+          <span class="body"><%= message.message.emojify.html_safe %></span>
+        </div>
+      <% end %>
+    </div>
+    <div class="chat_input">
+      <% if user_signed_in? %>
+        <%= form_for @stream.messages.new do |f| %>
+          <%= f.hidden_field :stream_id %>
+          <%= f.text_area :message, class: 'form-control no-autocomplete', rows: 1 %>
+        <% end %>
+      <% else %>
+        <div class="cant-chat">
+          <%= link_to 'Login', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to chat.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

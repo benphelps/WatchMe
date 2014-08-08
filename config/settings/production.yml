@@ -3,12 +3,28 @@ rtmp:
   app: 'stream'
 auth:
   servers:
-    - 50.7.99.186
     - 192.168.1.1
     - 127.0.0.1
 player:
   tech: 'flash'
-  volume: 0
-  debug: true
+  volume: 0.5
+  debug: false
 s3:
   bucket: watchmeio
+chat:
+  colors:
+    - c0392b
+    - d35400
+    - f39c12
+    - 27ae60
+    - 2980b9
+    - e74c3c
+    - e67e22
+    - f1c40f
+    - 2ecc71
+    - 3498db
+    - 8e44ad
+    - 9b59b6
+    - 2c3e50
+    - 34495e
+    - 7f8c8d

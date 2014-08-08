@@ -77,6 +77,9 @@
   height: 100%;
   width: 100%;
 }
+.chat_settings {
+  height: 353px;
+}
 .chat {
   height: 353px;
   overflow-y: scroll;
@@ -96,6 +99,25 @@
 #stream_container:hover > .player-popout {
   display: block;
   z-index: 999;
+}
+.float-right {
+  float: right;
+}
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.settings {
+  color: #333;
+}
+#settings_panel {
+  position: absolute;
+  background: inherit;
+  width: auto;
 }
 .player-popout {
   display: none;
@@ -154,3 +176,52 @@
 .header {
   height: 45px;
 }
+
+
+
+.color-c0392b {
+  color: #c0392b;
+}
+.color-d35400 {
+  color: #d35400;
+}
+.color-f39c12 {
+  color: #f39c12;
+}
+.color-27ae60 {
+  color: #27ae60;
+}
+.color-2980b9 {
+  color: #2980b9;
+}
+.color-e74c3c {
+  color: #e74c3c;
+}
+.color-e67e22 {
+  color: #e67e22;
+}
+.color-f1c40f {
+  color: #f1c40f;
+}
+.color-2ecc71 {
+  color: #2ecc71;
+}
+.color-3498db {
+  color: #3498db;
+}
+.color-8e44ad {
+  color: #8e44ad;
+}
+.color-9b59b6 {
+  color: #9b59b6;
+}
+.color-2c3e50 {
+  color: #2c3e50;
+}
+.color-34495e {
+  color: #34495e;
+}
+.color-7f8c8d {
+  color: #7f8c8d;
+}
+

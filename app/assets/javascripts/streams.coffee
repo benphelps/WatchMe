@@ -99,19 +99,29 @@ APP.streams =
           @$element.find("input[type=submit]").click => @update()
         getValue : ->
           @$element.find("textarea").val()
-    
     $('#stream_body').bind 'activate.rest-in-place', (event) ->
-      
-    
+      # Nothing
     $('#stream_body').bind 'ready.rest-in-place', (event, json) ->
       $('#pagedown-textarea').val($('#stream_markdown').val())
       $('#pagedown-textarea').pagedownBootstrap()
-      
     $('#stream_body').bind 'success.rest-in-place', (event, json) ->
       $('#stream_markdown').val(json.markdown)
       $el = $(this);
       $el.html(json.body)
       console.log json
+      
+    
+    $('#name_color').colorselector
+      callback: (value, color, title) ->
+        console.log value
+        $.post '/settings/color',
+          color: value
+          (data) ->
+            $('.myself').css 'color', "##{value}"
+    
+    $('.settings').on 'click', (event) ->
+        event.preventDefault()
+        $('#settings_panel').toggle()
     
     # Handle form submits
     $('form#new_message').keypress (event) ->

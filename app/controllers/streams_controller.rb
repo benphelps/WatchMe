@@ -71,6 +71,11 @@ class StreamsController < ApplicationController
   def show
     @stream = Stream.friendly.find(params[:id])
     @owned = user_signed_in? && (current_user.try(:stream) === @stream)
+    if user_signed_in?
+      gon.push({
+        color: current_user.settings(:chat).color
+      })
+    end
     gon.push({
       stream_id: @stream.id,
       stream_name: @stream.name

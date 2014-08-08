@@ -1,5 +1,7 @@
 WatchMe::Application.routes.draw do
 
+  get 'settings/update'
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   devise_for :users
   
@@ -25,6 +27,8 @@ WatchMe::Application.routes.draw do
   get '/:id' => 'streams#show', :as => 'stream'
   patch '/:id' => 'streams#update'
   put '/:id' => 'streams#update'
+  
+  post '/settings/color' => 'settings#color'
   
   resources :messages, only: [:create]
   resources :streams

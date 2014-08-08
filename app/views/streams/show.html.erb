@@ -26,32 +26,7 @@
     </div>
   
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 chat-pad">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Live Chat
-        </div>
-        <div id="chat" class="panel-body chat">
-          <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
-            <div class="message">
-              <span class="name" style="color:#<%= message.user.settings(:chat).color %>;"><%= message.user.username %>:</span>
-              <span class="body"><%= message.message.emojify.html_safe %></span>
-            </div>
-          <% end %>
-        </div>
-  
-          <div class="chat_input">
-            <% if user_signed_in? %>
-              <%= form_for @stream.messages.new do |f| %>
-                <%= f.hidden_field :stream_id %>
-                <%= f.text_area :message, class: 'form-control no-autocomplete', rows: 1 %>
-              <% end %>
-            <% else %>
-              <div class="cant-chat">
-                <%= link_to 'Login', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to chat.
-              </div>
-            <% end %>
-          </div>
-      </div>
+      <%= render 'streams/chat' %>
     </div>
   </div>
   
