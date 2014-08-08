@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   
   has_settings do |s|
     s.key :player, :defaults => {
-      :tech => 'flash',
-      :volume => 0.75
+      :tech => 'hls',
+      :volume => 0.50
     }
     s.key :chat, :defaults => {
       color: '000000'

@@ -78,6 +78,7 @@ APP.streams =
   init: () ->
     # Empty
   _form: () ->
+    $('#pagedown-textarea').pagedownBootstrap()
     
   show: () ->
     
