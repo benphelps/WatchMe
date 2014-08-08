@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     var parameters = {
-      poster: "/live/jpg/<%= @stream.user.username %>.jpg",
+      poster: "/live/jpg/<%= @stream.user.username.downcase %>.jpg",
       plugin_hls: "/HLSProvider.swf",
       plugin_ads: "/AdvertisementPlugin.swf",
       hls_minbufferlength: -1,
