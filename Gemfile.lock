@@ -198,6 +198,7 @@ GEM
     net-ssh (2.9.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    non-stupid-digest-assets (1.0.4)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
@@ -297,6 +298,7 @@ DEPENDENCIES
   multi_xml
   mustache-js-rails
   nokogiri
+  non-stupid-digest-assets
   pg
   rails (= 4.1.0)
   rails_config
