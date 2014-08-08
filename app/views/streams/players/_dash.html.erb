@@ -7,6 +7,6 @@
     player.startup();
     player.attachView(video);
     player.setAutoPlay(true);
-    player.attachSource("https://<%= Settings.rtmp.server %>/live/dash/<%= @stream.user.username %>/index.mpd");
+    player.attachSource("https://<%= Settings.rtmp.server %>/live/dash/<%= @stream.user.username.downcase %>/index.mpd");
   });
 </script>

@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     var parameters = {
-      poster: "<%= (@stream.live ? '/live/jpg/' + @stream.user.username + '.jpg' : @stream.placeholder_url) %>",
+      poster: "<%= (@stream.live ? '/live/jpg/' + @stream.user.username.downcase + '.jpg' : @stream.placeholder_url) %>",
       src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username %>",
       plugin_ads: "/AdvertisementPlugin.swf",
       autoPlay: true,
