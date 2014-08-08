@@ -4,6 +4,10 @@ set :deploy_user, 'deploy'
 set :scm, :git
 set :repo_url, 'git@gitbin.com:phelps/watchme-io.git'
 
+set :log_level, :info
+
+set :linked_dirs, %w{bin log tmp vendor/bundle public/system public/uploads}
+
 namespace :deploy do
   desc "Restart application"
   task :restart do
