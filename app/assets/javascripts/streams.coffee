@@ -87,11 +87,10 @@ APP.streams =
     RestInPlaceEditor.forms["markdown"] =
         activateForm : ->
           value = $.trim(@elementHTML())
-          @$element.html("""<div class="row"><div class="col-xs-12"><form action="javascript:void(0)" style="display:inline;">
-<div class="wmd-panel"><div id="wmd-button-bar"></div>
-<textarea id="wmd-textarea" class="form-control wmd-input rest-in-place-#{@attributeName}" rows="10" placeholder="#{@placeholder}"></textarea>
-  <input class="btn btn-sm btn-primary" type="submit" value="Save Changes">
-</div></form></div></div>""")
+          @$element.html("""<form action="javascript:void(0)" style="display:inline;">
+<textarea id="pagedown-textarea" class="form-control rest-in-place-#{@attributeName}" rows="10" placeholder="#{@placeholder}"></textarea>
+<input class="btn-right btn btn-sm btn-primary" type="submit" value="Save Changes">
+</form>""")
           @$element.find('textarea').val(value)
           @$element.find('textarea')[0].select()
           @$element.find("textarea").keyup (e) =>
@@ -104,10 +103,8 @@ APP.streams =
       
     
     $('#stream_body').bind 'ready.rest-in-place', (event, json) ->
-      $('#wmd-textarea').val($('#stream_markdown').val())
-      converter = Markdown.getSanitizingConverter()
-      editor = new Markdown.Editor converter
-      editor.run()
+      $('#pagedown-textarea').val($('#stream_markdown').val())
+      $('#pagedown-textarea').pagedownBootstrap()
       
     $('#stream_body').bind 'success.rest-in-place', (event, json) ->
       $('#stream_markdown').val(json.markdown)

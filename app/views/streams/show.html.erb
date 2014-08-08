@@ -4,7 +4,7 @@
       <% if @owned %>
         <h3><span class="rest-in-place" data-attribute="name" id="stream_name"><%= @stream.name %></span></h3>
       <% else %>
-        <h3><%= @stream.name %></h3>
+        <h3><span id="stream_name"><%= @stream.name %></span></h3>
       <% end %>
     </div>
   </div>
@@ -67,7 +67,8 @@
             <textarea id="stream_markdown" style="display:none;"><%= @stream.body %></textarea>
             <span class="rest-in-place" data-formtype="markdown" data-attribute="body" id="stream_body"><%= @stream.markdown %></span>
           <% else %>
-            <%= @stream.markdown %>
+            <span id="stream_body"><%= @stream.markdown %></span>
+            
           <% end %>
         </div>
       </div>

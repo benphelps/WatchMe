@@ -10,7 +10,8 @@
  *
  *= require_self
  *= require bootsy
- *= require markdown
+ *= require pagedown
+ *= font-awesome
  *= require_tree .
  */
  
