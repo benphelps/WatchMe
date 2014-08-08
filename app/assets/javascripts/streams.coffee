@@ -54,6 +54,7 @@ class Chat
     Mustache.parse @templates[name]
   
   write: (data) ->
+    data.myself = 'myself' if gon.user.username == data.username
     @element.append Mustache.render @templates.message, data
     @scroll()
     

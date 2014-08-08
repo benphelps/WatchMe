@@ -72,8 +72,10 @@ class StreamsController < ApplicationController
     @stream = Stream.friendly.find(params[:id])
     @owned = user_signed_in? && (current_user.try(:stream) === @stream)
     if user_signed_in?
-      gon.push({
-        color: current_user.settings(:chat).color
+      gon.push({ user: {
+          color: current_user.settings(:chat).color,
+          username: current_user.username
+        }
       })
     end
     gon.push({
