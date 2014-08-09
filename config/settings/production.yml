@@ -1,4 +1,6 @@
 rtmp:
+  proto: 'https'
+  post: '/live'
   server: 'watchme.io'
   app: 'stream'
 auth:

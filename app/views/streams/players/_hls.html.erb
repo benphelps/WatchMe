@@ -1,13 +1,13 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     var parameters = {
-      poster: "/live/jpg/<%= @stream.user.username.downcase %>.jpg",
+      poster: "<%= Settings.rtmp.post %>/jpg/<%= @stream.user.username.downcase %>.jpg",
       plugin_hls: "/HLSProvider.swf",
       plugin_ads: "/AdvertisementPlugin.swf",
       hls_minbufferlength: -1,
       hls_lowbufferlength: 5,
       hls_maxbufferlength: 30,
-      src: "https://<%= Settings.rtmp.server %>/live/hls/<%= @stream.user.username.downcase %>/index.m3u8",
+      src: "<%= Settings.rtmp.proto %>://<%= Settings.rtmp.server %><%= Settings.rtmp.post %>/hls/<%= @stream.user.username.downcase %>/index.m3u8",
       autoPlay: true,
       controlBarAutoHide: true,
       controlBarAutoHideTimeout: 1,

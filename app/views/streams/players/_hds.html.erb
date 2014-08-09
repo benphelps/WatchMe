@@ -1,8 +1,8 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
     var parameters = {
-      poster: "<%= (@stream.live ? '/live/jpg/' + @stream.user.username.downcase + '.jpg' : @stream.placeholder_url) %>",
-      src: "https://<%= Settings.rtmp.server %>/live/hds/<%= @stream.user.username.downcase %>.f4m",
+      poster: "<%= Settings.rtmp.post %>/jpg/<%= @stream.user.username.downcase %>.jpg",
+      src: "<%= Settings.rtmp.proto %>://<%= Settings.rtmp.server %><%= Settings.rtmp.post %>/hds/<%= @stream.user.username.downcase %>.f4m",
       plugin_ads: "/AdvertisementPlugin.swf",
       autoPlay: true,
       controlBarAutoHide: true,

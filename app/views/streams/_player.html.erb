@@ -1,15 +1,19 @@
 <% if @stream.live? %>
-  <% if user_signed_in? %>
-    <%= render 'streams/players/' + current_user.settings(:player).tech %>
+  <% if params[:tech] && (['dash', 'flash', 'hds', 'hls'].include? params[:tech]) %>
+    <%= render 'streams/players/' + params[:tech] %>
   <% else %>
-    <%= render 'streams/players/hls' %>
+    <% if user_signed_in? %>
+      <%= render 'streams/players/' + current_user.settings(:player).tech %>
+    <% else %>
+      <%= render 'streams/players/' + Settings.player.tech %>
+    <% end %>
   <% end %>
 <% else %>
   <%= render 'streams/players/offline' %>
 <% end %>
 <script id="html5v_tpl" type="x-tmpl-mustache">
   <video id="html5_player" poster="/live/jpg/{{ username }}.jpg" controls="true">
-    <source src="//<%= Settings.rtmp.server %>/hls/{{ username }}/index.m3u8" type="application/x-mpegURL"></source>
+    <source src="<%= Settings.rtmp.proto %>://<%= Settings.rtmp.server %><%= Settings.rtmp.post %>/hls/{{ username }}/index.m3u8" type="application/x-mpegURL"></source>
   </video>
 </script>
 <script type="text/javascript" charset="utf-8">
