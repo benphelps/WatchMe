@@ -10,10 +10,11 @@ class PlaceholderUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   
-  process :resize_to_fit => [1280, 720]
+  process :resize_to_limit => [1280, 720]
   
   version :thumb do
-    process :resize_to_fit => [320,180]
+    process :only_first_frame
+    process :resize_to_limit => [350, 200]
   end
 
   def default_url
@@ -21,11 +22,24 @@ class PlaceholderUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg png)
   end
   
   def filename
      "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+  
+  def only_first_frame
+    manipulate! do |img|
+      if img.mime_type.match /gif/
+        if img.scene == 0
+          img = img.cur_image #Magick::ImageList.new( img.base_filename )[0]
+          else
+            img = nil # avoid concat all frames
+        end
+      end
+      img
+    end
   end
   
   protected

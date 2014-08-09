@@ -1,10 +1,11 @@
 <% @streams.each do |stream| %>
 <div class="col-md-4 stream-block">
-  <%= link_to image_tag((stream.live ? '/live/jpg/' + stream.user.username.downcase + '_small.jpg' : stream.placeholder_url), class: 'img-responsive'), stream_path(stream) %>
+<%= link_to stream_path(stream)  do %>
+  <div class="stream_image" style="background-image: url('<%= (stream.live ? '/live/jpg/' + stream.user.username.downcase + '_small.jpg' : stream.placeholder_url) %>');"></div>
+<% end %>
   <% if stream.live %>
     <div class="live-tag"><span class="glyphicon glyphicon-facetime-video live-dot"></span>Live</div>
   <% end %>
   <h3><%= link_to stream.name, stream %></h3>
-  <p><%= stream.description %></p>
 </div>
 <% end %>

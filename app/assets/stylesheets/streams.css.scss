@@ -176,9 +176,22 @@
 .header {
   height: 45px;
 }
-
-
-
+.stream_image {
+  min-width: 350px;
+  min-height: 200px;
+  max-width: 350px;
+  max-height: 200px;
+  background-color: #000;
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.img-stream {
+  height: 200px;
+  width: 350px;
+  background-position: center;
+  background-color: #000;
+}
 .color-c0392b {
   color: #c0392b;
 }
