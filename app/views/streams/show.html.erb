@@ -25,7 +25,7 @@
       </div>
       
       <% if @stream.user.settings(:lastfm).enabled %>
-      <% if LastFm.nowplaying(@stream.user.settings(:lastfm).username)[:playing] %>
+      <% if LastFm.nowplaying(@stream.user.settings(:lastfm).username).try(:playing) %>
         <div id="lastfm">
       <% else %>
         <div id="lastfm" style="display: none;">
