@@ -11,6 +11,7 @@
       optimizeBuffering : false,
       optimizeInitialIndex: false,
       streamType: "live",
+      volume: <%= settings(:player).volume %>,
       javascriptCallbackFunction: "createJSBridge",
     };
     if (swfobject.hasFlashPlayerVersion("10.1")) {
