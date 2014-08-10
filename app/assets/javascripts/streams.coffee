@@ -20,8 +20,11 @@ class Watchme
         @player.handleAd data
       when 'info_update'
         @handleUpdate data
-      when 'go_live'
-        @handleLive data
+      #when 'go_live'
+      when 'go_dark'
+        @handleViewers {viewers: 'Offline'}
+      when 'viewers'
+        @handleViewers data
       when 'debug'
         @debug data
         
@@ -33,6 +36,9 @@ class Watchme
   handleLive: (data) ->
     $.get "/#{@stream_name}/player", (data) ->
       $('#player').html data
+  
+  handleViewers: (data) ->
+    $('#viewers').text data.viewers
 
   debug: (data) ->
     console.log data

@@ -74,10 +74,7 @@
         </div>
         <div class="panel-body">
           <div>
-            <strong>Viewers:</strong> <span id="viewer_count"></span>
-          </div>
-          <div>
-            <strong>Views:</strong> NYI
+            <strong>Viewers:</strong> <span id="viewers"><%= ( @stream.viewers >= 1 ? @stream.viewers : 'Offline' ) %></span>
           </div>
         </div>
       </div>
