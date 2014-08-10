@@ -85,6 +85,11 @@ class LastFm
     @amazon = $('#amazonref')
     @amazon.click =>
       window.open @amazon.data('link')
+    @spotify = $('#spotifyopen')
+    @spotify.click =>
+      window.open @spotify.data('link') 
+    
+    
       
   
   subscribe: ->
@@ -100,13 +105,16 @@ class LastFm
   
   update: ->
     if @playing.playing
-      console.log @main
       if @main.is(':hidden')
         @main.show()
       if @playing.amazon and @amazon.is(':hidden')
         @amazon.show()
       if @playing.amazon == false
         @amazon.hide()
+      if @playing.spotify and @spotify.is(':hidden')
+        @spotify.show()
+      if @playing.spotify == false
+        @spotify.hide()
       if @playing.image.length > 1
         @img.html ''
         @img.css 'background-image', "url('#{@playing.image}')"
@@ -116,6 +124,7 @@ class LastFm
       @song.html @playing.name
       @artist.html @playing.artist
       @amazon.data 'link', @playing.amazon
+      @spotify.data 'link', @playing.spotify
     else
       @main.hide()
     

@@ -1,7 +1,5 @@
 class LastFm < ActiveRecord::Base
   
-  
-  
   def self.nowplaying(user)
     recent = recent(user)
     if recent['recenttracks']['track'][0]
@@ -11,7 +9,8 @@ class LastFm < ActiveRecord::Base
         artist: recent['recenttracks']['track'][0]['artist']['#text'],
         album: recent['recenttracks']['track'][0]['album']['#text'],
         image: recent['recenttracks']['track'][0]['image'].last['#text'],
-        amazon: amazon(recent['recenttracks']['track'][0]['name'], recent['recenttracks']['track'][0]['artist']['#text'])
+        amazon: amazon(recent['recenttracks']['track'][0]['name'], recent['recenttracks']['track'][0]['artist']['#text']),
+        spotify: spotify(recent['recenttracks']['track'][0]['name'], recent['recenttracks']['track'][0]['artist']['#text'],recent['recenttracks']['track'][0]['album']['#text'])
       }
     else
       return {
@@ -27,8 +26,23 @@ class LastFm < ActiveRecord::Base
     end
   end
   
+  def self.spotify(title, artist, album)
+    Rails.cache.fetch([title, artist, album, 'spotify'], :expires_in => 1.day) do
+      query_spotify(title, artist, album)
+    end
+  end
+  
+  def self.query_spotify(title, artist, album)
+    json = HTTParty.get("http://api.spotify.com/v1/search?q=track:#{URI::encode(title)}%20artist:#{URI::encode(artist)}%20album:#{URI::encode(album)}&type=track")
+    if json.parsed_response['tracks']['total'] > 0
+      json.parsed_response['tracks']['items'][0]['external_urls']['spotify']
+    else
+      false
+    end
+  end
+  
   def self.amazon(title, artist)
-    res = Rails.cache.fetch([title, artist, 'amazon'], :expires_in => 1.day) do
+    Rails.cache.fetch([title, artist, 'amazon'], :expires_in => 1.day) do
       query_amazon(title, artist)
     end
   end

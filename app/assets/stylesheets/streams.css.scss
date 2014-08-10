@@ -247,6 +247,18 @@
   background-size: 100%;
   cursor: pointer;
 }
+.spotifyopen {
+  display: inline-block;
+  float: right;
+  top: 0px;
+  right: 0px;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  background-image: image-url("spotify-logo.png");
+  background-size: 100%;
+  cursor: pointer;
+}
 .color-c0392b {
   color: #c0392b;
 }
