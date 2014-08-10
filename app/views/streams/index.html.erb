@@ -1,8 +1,8 @@
 <% @streams.each do |stream| %>
 <div class="col-md-4 stream-block">
-<%= link_to stream_path(stream)  do %>
-  <div class="stream_image" style="background-image: url('<%= (stream.live ? '/live/jpg/' + stream.user.username.downcase + '_small.jpg' : stream.placeholder_url) %>');"></div>
-<% end %>
+  <%= link_to stream_path(stream)  do %>
+    <div class="stream_image" style="background-image: url('<%= (stream.live ? Settings.rtmp.proto + '://' + Settings.rtmp.server + Settings.rtmp.post + '/jpg/' + stream.user.username.downcase + '_small.jpg' : stream.placeholder_url) %>');"></div>
+  <% end %>
   <% if stream.live %>
     <div class="live-tag"><span class="glyphicon glyphicon-facetime-video live-dot"></span>Live</div>
   <% end %>

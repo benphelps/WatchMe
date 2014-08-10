@@ -12,7 +12,7 @@
   <%= render 'streams/players/offline' %>
 <% end %>
 <script id="html5v_tpl" type="x-tmpl-mustache">
-  <video id="html5_player" poster="/live/jpg/{{ username }}.jpg" controls="true" autoplay="true">
+  <video id="html5_player" poster="<%= Settings.rtmp.proto %>://<%= Settings.rtmp.server %><%= Settings.rtmp.post %>/jpg/{{ username }}.jpg" controls="true" autoplay="true">
     <source src="<%= Settings.rtmp.proto %>://<%= Settings.rtmp.server %><%= Settings.rtmp.post %>/hls/{{ username }}/index.m3u8" type="application/x-mpegURL"></source>
   </video>
 </script>
