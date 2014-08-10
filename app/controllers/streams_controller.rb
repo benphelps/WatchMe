@@ -79,6 +79,7 @@ class StreamsController < ApplicationController
       })
     end
     gon.push({
+      streamer: @stream.user.id,
       stream_id: @stream.id,
       stream_name: @stream.name
     })

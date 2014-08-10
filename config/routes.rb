@@ -30,6 +30,8 @@ WatchMe::Application.routes.draw do
   
   post '/settings/color' => 'settings#color'
   
+  get '/lastfm/:id' => 'lastfm#playing'
+  
   resources :messages, only: [:create]
   resources :streams
   

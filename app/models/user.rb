@@ -15,11 +15,15 @@ class User < ActiveRecord::Base
   
   has_settings do |s|
     s.key :player, :defaults => {
-      :tech => 'hls',
+      :tech => 'flash',
       :volume => 0.50
     }
     s.key :chat, :defaults => {
       color: '000000'
+    }
+    s.key :lastfm, :defaults => {
+      enabled: false,
+      username: nil,
     }
   end
   

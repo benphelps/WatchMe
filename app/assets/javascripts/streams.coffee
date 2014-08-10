@@ -73,7 +73,26 @@ class Player
     if document.player.getVolume() <= 0
       document.player.setVolume 0.25
     document.player.displayLiniarAd url
+    
+class LastFm
+  constructor: (user_id) ->
+    @user_id = user_id
+    @playing = { }
+  
+  subscribe: ->
+    @fetch()
+    setInterval @fetch, 5000
 
+  fetch: () =>
+    $.get "lastfm/#{@user_id}", (data) =>
+      if @playing != data
+        @playing = data
+        @update()
+  
+  update: ->
+    $('#lastfm_song').html @playing.name
+    $('#lastfm_artist').html @playing.artist
+    $('#lastfm_img').css 'background-image', "url('#{@playing.image}')"
 
 APP.streams = 
   init: () ->
@@ -85,6 +104,9 @@ APP.streams =
     
     # Connect to the websocket and setup chat
     watchme = new Watchme
+    
+    lastfm = new LastFm gon.streamer
+    lastfm.subscribe()
     
     RestInPlaceEditor.forms["markdown"] =
         activateForm : ->
