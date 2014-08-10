@@ -44,7 +44,9 @@ class LastFm < ActiveRecord::Base
       'SearchIndex' => 'DigitalMusic',
       'Keywords'    => "#{title}, #{artist}"
     }).to_h
-    if res['ItemSearchResponse']['Items']['TotalResults'].to_i >= 1
+    if res['ItemSearchResponse']['Items']['TotalResults'].to_i == 1
+      res['ItemSearchResponse']['Items']['Item']['DetailPageURL'].to_s
+    elsif res['ItemSearchResponse']['Items']['TotalResults'].to_i >= 1
       res['ItemSearchResponse']['Items']['Item'][0]['DetailPageURL'].to_s
     else
       false
