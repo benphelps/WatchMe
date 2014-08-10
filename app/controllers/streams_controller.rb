@@ -71,6 +71,11 @@ class StreamsController < ApplicationController
   def show
     @stream = Stream.friendly.find(params[:id])
     @owned = user_signed_in? && (current_user.try(:stream) === @stream)
+    
+    # mute the stream if we're live
+    if @owned && @stream.live
+      current_user.settings(:player).volume = 0
+    end
     if user_signed_in?
       gon.push({ user: {
           color: current_user.settings(:chat).color,
