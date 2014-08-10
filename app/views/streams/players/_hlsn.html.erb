@@ -1,0 +1,5 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('#player').html(Mustache.render($('#html5v_tpl').html(), { username: '<%= @stream.user.username %>' }));
+  });
+</script>
