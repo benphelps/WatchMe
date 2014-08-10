@@ -36,6 +36,7 @@ gem 'non-stupid-digest-assets'
 gem 'rails_emoji', '~> 1.7.1'
 gem 'httparty'
 gem 'dalli'
+gem 'vacuum'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
 gem 'capistrano-rvm'

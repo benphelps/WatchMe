@@ -78,6 +78,14 @@ class LastFm
   constructor: (user_id) ->
     @user_id = user_id
     @playing = { }
+    @main =   $('#lastfm')
+    @song = $('#lastfm_song')
+    @artist = $('#lastfm_artist')
+    @img = $('#lastfm_img')
+    @amazon = $('#amazonref')
+    @amazon.click =>
+      window.open @amazon.data('link')
+      
   
   subscribe: ->
     @fetch()
@@ -88,11 +96,29 @@ class LastFm
       if @playing != data
         @playing = data
         @update()
+      
   
   update: ->
-    $('#lastfm_song').html @playing.name
-    $('#lastfm_artist').html @playing.artist
-    $('#lastfm_img').css 'background-image', "url('#{@playing.image}')"
+    if @playing.playing
+      console.log @main
+      if @main.is(':hidden')
+        @main.show()
+      if @playing.amazon and @amazon.is(':hidden')
+        @amazon.show()
+      if @playing.amazon == false
+        @amazon.hide()
+      if @playing.image.length > 1
+        @img.html ''
+        @img.css 'background-image', "url('#{@playing.image}')"
+      else
+        @img.css 'background-image', 'none'
+        @img.html '<span class="white glyphicon glyphicon-music"></span>'
+      @song.html @playing.name
+      @artist.html @playing.artist
+      @amazon.data 'link', @playing.amazon
+    else
+      @main.hide()
+    
 
 APP.streams = 
   init: () ->

@@ -210,15 +210,42 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
-  margin-right: 15px;
+  font-size: 38px;
+  color: #eee;
+  text-align: center;
+  &:hover {
+    width: 256px;
+    height: 256px;
+    position: absolute;
+    z-index: 99;
+    box-shadow: 1px 1px 5px #444;
+  }
+}
+.lastfm_info {
+  display: inline-block;
+  float: left;
 }
 .lastfm_artist {
+  margin-left: 55px;
   font-weight: normal;
   font-size: 75%;
 }
 .lastfm_song {
+  margin-left: 55px;
   padding-top: 5px;
   font-weight: bold;
+}
+.amazonref {
+  display: inline-block;
+  float: right;
+  top: 0px;
+  right: 0px;
+  width: 32px;
+  height: 32px;
+  margin: 8px;
+  background-image: image-url("amazon-logo.png");
+  background-size: 100%;
+  cursor: pointer;
 }
 .color-c0392b {
   color: #c0392b;

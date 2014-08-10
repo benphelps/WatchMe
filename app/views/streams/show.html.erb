@@ -25,11 +25,19 @@
       </div>
       
       <% if @stream.user.settings(:lastfm).enabled %>
+      <% if LastFm.nowplaying(@stream.user.settings(:lastfm).username)[:playing] %>
         <div id="lastfm">
-          <div class="lastfm_img" id="lastfm_img"></div>
-          <div class="lastfm_song" id="lastfm_song">Loading ...</div>
-          <div class="lastfm_artist" id="lastfm_artist">Loading ...</div>
+      <% else %>
+        <div id="lastfm" style="display: none;">
+      <% end %>
+          <div class="lastfm_info">
+            <div class="lastfm_img" id="lastfm_img"></div>
+            <div class="lastfm_song" id="lastfm_song">Loading ...</div>
+            <div class="lastfm_artist" id="lastfm_artist">Loading ...</div>
+          </div>
+          <div id="amazonref" class="amazonref" data-link="" style="display:none;"></div>
         </div>
+       
       <% end %>
       
     </div>
