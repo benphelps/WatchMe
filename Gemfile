@@ -37,6 +37,7 @@ gem 'rails_emoji', '~> 1.7.1'
 gem 'httparty'
 gem 'dalli'
 gem 'vacuum'
+gem 'musicbrainz'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
 gem 'capistrano-rvm'
@@ -45,4 +46,5 @@ gem 'capistrano-bundler', '~> 1.1'
   
 group :development do
   gem 'sqlite3'
+  gem 'awesome_print'
 end

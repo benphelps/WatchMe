@@ -55,6 +55,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -112,6 +113,8 @@ GEM
     eventmachine (1.0.3)
     excon (0.39.3)
     execjs (2.2.1)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     faye (1.0.3)
       cookiejar (>= 0.3.0)
       em-http-request (>= 0.3.0)
@@ -197,6 +200,10 @@ GEM
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
+    musicbrainz (0.7.6)
+      faraday
+      nokogiri
     mustache-js-rails (0.0.9)
       railties (>= 3.1, <= 5.0)
     net-scp (1.2.1)
@@ -281,6 +288,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   better_errors
   binding_of_caller
   bootsy!
@@ -307,6 +315,7 @@ DEPENDENCIES
   ledermann-rails-settings
   mini_magick (~> 3.7.0)
   multi_xml
+  musicbrainz
   mustache-js-rails
   nokogiri
   non-stupid-digest-assets
