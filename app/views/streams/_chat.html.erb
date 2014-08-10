@@ -15,8 +15,10 @@
     <div id="chat" class="panel-body chat">
       <% @stream.messages.limit(15).order(created_at: :desc).reverse.each do |message| %>
         <div class="message">
+          <span class="body">
           <span class="name color-<%=message.user.settings(:chat).color%><%=( user_signed_in? && message.user === current_user ? ' myself' : '' )%>"><%= message.user.username %>:</span>
-          <span class="body"><%= message.message.emojify.html_safe %></span>
+          <%= message.message.emojify.html_safe %> 
+          </span>
         </div>
       <% end %>
     </div>
@@ -36,7 +38,8 @@
 </div>
 <script id="message_tpl" type="x-tmpl-mustache">
   <div id="msg_{{id}}" data-user-id="{{user_id}}" data-id="{{id}}" class="message">
-    <span class="name {{myself}}" style="color:#{{color}};">{{username}}:</span>
-    <span class="body">{{{message}}}</span>
+    <span class="body">
+      <span class="name {{myself}}" style="color:#{{color}};">{{username}}:</span>
+      {{{message}}}</span>
   </div>
 </script>

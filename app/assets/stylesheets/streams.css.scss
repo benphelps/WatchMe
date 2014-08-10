@@ -84,12 +84,13 @@
   height: 353px;
   overflow-y: scroll;
   .message {
+    word-break: break-all;
     padding: 3px;
     .name {
       font-weight: bold;
     }
     .body {
-      margin-left: 5px;
+      word-wrap: break-word;
     }
   }
 }
