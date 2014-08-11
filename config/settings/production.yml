@@ -11,8 +11,10 @@ player:
   tech: 'flash'
   volume: 0.5
   debug: false
-s3:
+aws:
   bucket: watchmeio
+  key: 'AKIAISLFYNZLIOEZROFA'
+  secret: '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'
 chat:
   colors:
     - c0392b
