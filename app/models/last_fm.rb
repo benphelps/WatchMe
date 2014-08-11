@@ -24,7 +24,7 @@ class LastFm < ActiveRecord::Base
     end
   end
   def self.recent(user)
-    Rails.cache.fetch([user, 'lastfm'], :expires_in => 5.seconds) do
+    Rails.cache.fetch([user, 'lastfm'], :expires_in => 10.seconds) do
       json = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&limit=2&user=#{user}&api_key=b002d72c627d2b046f7326a31c069f7d&format=json")
       json.parsed_response
     end
