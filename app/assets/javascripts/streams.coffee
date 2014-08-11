@@ -93,22 +93,25 @@ class LastFm
       window.open @amazon.data('link')
     @spotify = $('#spotifyopen')
     @spotify.click =>
-      window.open @spotify.data('link') 
-    
-    
-      
-  
+      if @spotify.data('link').length > 1
+        window.open @spotify.data('link')
+    @song.click =>
+      if @song.data('link').length > 1
+        window.open 'http://musicbrainz.org/track/' +  @song.data('link') 
+    @artist.click =>
+      if @artist.data('link').length > 1
+        window.open 'http://musicbrainz.org/artist/' +  @artist.data('link') 
+
   subscribe: ->
     @fetch()
     setInterval @fetch, 5000
 
   fetch: () =>
     $.get "lastfm/#{@user_id}", (data) =>
-      if @playing != data
+      if @playing.name != data.name
         @playing = data
         @update()
-      
-  
+
   update: ->
     if @playing.playing
       if @main.is(':hidden')
@@ -127,6 +130,8 @@ class LastFm
       else
         @img.css 'background-image', 'none'
         @img.html '<span class="white glyphicon glyphicon-music"></span>'
+      @song.data 'link', @playing.mbid.track
+      @artist.data 'link', @playing.mbid.artist
       @song.html @playing.name
       @artist.html @playing.artist
       @amazon.data 'link', @playing.amazon
