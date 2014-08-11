@@ -38,13 +38,15 @@ gem 'httparty'
 gem 'dalli'
 gem 'vacuum'
 gem 'musicbrainz'
+gem 'asset_sync'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
 gem 'capistrano-rvm'
 gem 'capistrano-rails',   '~> 1.1'
 gem 'capistrano-bundler', '~> 1.1'
-  
+
 group :development do
   gem 'sqlite3'
   gem 'awesome_print'
+  gem 'rack-mini-profiler'
 end
