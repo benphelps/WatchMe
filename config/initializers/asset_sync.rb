@@ -3,4 +3,6 @@ AssetSync.configure do |config|
   config.aws_access_key_id = Settings.aws.key
   config.aws_secret_access_key = Settings.aws.secret
   config.fog_directory = Settings.aws.bucket
+  config.manifest = true
+  #config.gzip_compression = true
 end
