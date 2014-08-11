@@ -2,7 +2,7 @@
   $(document).ready(function(){
     var parameters = {
       poster: "<%= Settings.rtmp.post %>/jpg/<%= @stream.user.username.downcase %>.jpg",
-      src: "rtmp://<%= Settings.rtmp.outgest %>/stream/<%= @stream.user.username.downcase %>",
+      src: "rtmp://<%= Settings.rtmp.server %>/stream/<%= @stream.user.username.downcase %>",
       plugin_ads: "/AdvertisementPlugin.swf",
       autoPlay: true,
       controlBarAutoHide: true,

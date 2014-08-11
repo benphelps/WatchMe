@@ -9,7 +9,7 @@ auth:
     - 192.168.1.1
     - 127.0.0.1
 player:
-  tech: 'flash'
+  tech: 'hls'
   volume: 0
   debug: true
 aws:
