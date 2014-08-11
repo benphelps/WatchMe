@@ -2,6 +2,7 @@ rtmp:
   proto: 'https'
   post: '/live'
   server: 'watchme.io'
+  outgest: 'd1asxmqch3vywv.cloudfront.net'
   app: 'stream'
 auth:
   servers:

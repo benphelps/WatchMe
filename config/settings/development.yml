@@ -2,6 +2,7 @@ rtmp:
   proto: 'http'
   post: ''
   server: 'live.watchme.dev'
+  outgest: 'live.watchme.dev'
   app: 'stream'
 auth:
   servers:
