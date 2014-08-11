@@ -38,7 +38,6 @@ gem 'httparty'
 gem 'dalli'
 gem 'vacuum'
 gem 'musicbrainz'
-gem 'asset_sync'
 
 gem 'capistrano', '~> 3.0', require: false, group: :development
 gem 'capistrano-rvm'
