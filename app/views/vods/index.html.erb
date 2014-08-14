@@ -1,11 +1,9 @@
 <% @vods.each do |vod| %>
 <div class="col-md-4 stream-block">
-  <a href="<%= vod_show_path(vod.stream.friendly_id, vod.id) %>">
-    <div class="preview" style="background-image: url('<%= vod.stream.placeholder_url %>');">
-      <div class="preview" style="background-image: url('<%= '/preview/' + vod.basename + '_small.jpg' %>');"></div>
+  <%= link_to vod_show_path(vod.stream.friendly_id, vod.id) do %>
+    <div class="stream_image" style="background-image: url('<%= Settings.rtmp.proto %>://<%= Settings.rtmp.outgest %><%= Settings.rtmp.post %>/jpg/<%= vod.basename %>_small.jpg');">
     </div>
-    <h3><%= link_to vod.title, vod_show_path(vod.stream.friendly_id, vod.id)  %></h3>
-  </a>
-  <p><%= vod.description %></p>
+  <% end %>
+  <h3><%= link_to vod.title, vod_show_path(vod.stream.friendly_id, vod.id)  %></h3>
 </div>
 <% end %>
